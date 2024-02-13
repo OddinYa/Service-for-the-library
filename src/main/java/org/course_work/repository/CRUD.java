@@ -6,7 +6,7 @@ public interface CRUD<T> {
 
     T find(String key);
 
-    void update(T o);
+    void update(T obj);
 
     void delete(String key);
 

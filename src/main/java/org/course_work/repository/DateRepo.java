@@ -17,7 +17,7 @@ public class DateRepo implements CRUD<DataOnTheIssuanceAndAcceptanceOfBooks> {
     }
 
     @Override
-    public void update(DataOnTheIssuanceAndAcceptanceOfBooks o) {
+    public void update(DataOnTheIssuanceAndAcceptanceOfBooks obj) {
 
     }
 
