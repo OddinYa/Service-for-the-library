@@ -1,4 +1,4 @@
 package org.course_work.struct.tree;
 
-public class NodeT {
+class Node {
 }

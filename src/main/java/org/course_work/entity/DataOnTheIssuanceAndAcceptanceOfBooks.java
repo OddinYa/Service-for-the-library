@@ -1,8 +1,8 @@
 package org.course_work.entity;
 
 public class DataOnTheIssuanceAndAcceptanceOfBooks {
-    String libraryCardNumber;
-    String cipher;
-    String dateOfIssue;
-    String returnDate;
+   private String libraryCardNumber;
+   private String cipher;
+   private String dateOfIssue;
+   private String returnDate;
 }

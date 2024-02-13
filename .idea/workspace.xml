@@ -4,22 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="firstCommit">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/exception/AccessRightsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/List.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/Bucket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/MyMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/NodeT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/TreeSet.java" afterDir="false" />
+    <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="The main application structure has been added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/repository/BookRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/repository/CRUD.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/repository/DateRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/repository/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/Bucket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/Bucket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/NodeT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Node.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -62,6 +57,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/Мой диск/Общая учебная папка/IV семестр/AиСДКурсовой/ServiceForTheLibrary",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,7 +71,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.course_work.Main" />
-      <module name="ServisForTheLibrary.main" />
+      <module name="ServiceForTheLibrary.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.course_work.*" />
@@ -100,7 +96,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707760019327</updated>
-      <workItem from="1707760020998" duration="5049000" />
+      <workItem from="1707760020998" duration="5341000" />
+      <workItem from="1707840354596" duration="178000" />
+      <workItem from="1707840651492" duration="2898000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -109,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707760432133</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="The main application structure has been added">
+      <created>1707765330526</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707765330526</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +133,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="firstCommit" />
-    <option name="LAST_COMMIT_MESSAGE" value="firstCommit" />
+    <MESSAGE value="The main application structure has been added" />
+    <option name="LAST_COMMIT_MESSAGE" value="The main application structure has been added" />
   </component>
 </project>
