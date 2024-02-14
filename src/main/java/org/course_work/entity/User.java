@@ -9,7 +9,8 @@ import java.util.Date;
 public class User {
    private final String numberOfTheTicket;
    private char accessRights;
-   private int numbOfRegistration = 0;
+   private static int lastAssignedNumber = 0;
+   private  int numbOfRegistration;
    private String fullName;
 
    private int yearOfBirth;
@@ -42,12 +43,12 @@ public class User {
         };
     }
 
-    private String createNumber(int accessRights){
+    private String createNumber(char accessRights){
 
         StringBuilder stringBuilder = new StringBuilder(accessRights);
         stringBuilder.append(accessRights);
-
-        numbOfRegistration++;
+        lastAssignedNumber++;
+        this.numbOfRegistration = lastAssignedNumber;
         String string = String.format("%04d",numbOfRegistration);
 
         stringBuilder.append(string);
@@ -120,6 +121,16 @@ public class User {
         this.placeOfWorkOrStudy = placeOfWorkOrStudy;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "numberOfTheTicket='" + numberOfTheTicket + '\'' +
+                ", accessRights=" + accessRights +
+                ", numbOfRegistration=" + numbOfRegistration +
+                ", fullName='" + fullName + '\'' +
+                ", yearOfBirth=" + yearOfBirth +
+                ", address='" + address + '\'' +
+                ", placeOfWorkOrStudy='" + placeOfWorkOrStudy + '\'' +
+                '}';
+    }
 }

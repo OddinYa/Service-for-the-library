@@ -14,7 +14,7 @@ public class BookRepo implements CRUD<Book>{
     }
 
     @Override
-    public void update(Book o) {
+    public void update(Book obj) {
 
     }
 

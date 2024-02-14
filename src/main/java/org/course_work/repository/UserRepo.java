@@ -16,7 +16,7 @@ public class UserRepo implements CRUD<User> {
     }
 
     @Override
-    public void update(User o) {
+    public void update(User obj) {
 
     }
 
