@@ -17,5 +17,25 @@ public class List {
             node.next = new Node(data);
         }
     }
+
+    public void remove(DataOnTheIssuanceAndAcceptanceOfBooks data){
+        if(head==null){
+            return;
+        }
+        if(data.equals(head.data)){
+            head = head.next;
+            return;
+        }
+
+        Node temp = head;
+        while(head.next != null){
+
+            if(data.equals(temp.next.data)){
+                temp.next = temp.next.next;
+                return;
+            }
+            temp = head.next;
+        }
+    }
 }
 

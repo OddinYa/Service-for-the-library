@@ -3,14 +3,18 @@ package org.course_work.view.console;
 import org.course_work.controller.BookController;
 import org.course_work.controller.DataController;
 import org.course_work.controller.UserController;
-import org.course_work.entity.Book;
+
 
 public class ConsoleDisplay {
-    UserController userController = new UserController();
-    DataController dataController = new DataController();
-    BookController bookController = new BookController();
+    UserController userController;
+    DataController dataController;
+    BookController bookController;
 
     public ConsoleDisplay(){
+        userController = new UserController();
+        dataController = new DataController();
+        bookController = new BookController();
+
         action();
     }
 
