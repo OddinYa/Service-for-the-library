@@ -1,4 +1,6 @@
 package org.course_work.service;
 
-public interface FileWriter {
+public interface FileWriter<T> {
+
+    void writeToFile(T data);
 }
