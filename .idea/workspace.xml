@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="+dev">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/CreateFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/UserFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/FileReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/FileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/FileWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/course_work/entity/BookTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/course_work/entity/BookTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +64,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
@@ -225,7 +218,8 @@
       <workItem from="1707840651492" duration="7808000" />
       <workItem from="1707936743800" duration="7513000" />
       <workItem from="1708022500378" duration="2490000" />
-      <workItem from="1708028020125" duration="1346000" />
+      <workItem from="1708028020125" duration="1529000" />
+      <workItem from="1708114172263" duration="842000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -262,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707943915980</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="+dev">
+      <created>1708029528287</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708029528287</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
