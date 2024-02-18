@@ -147,11 +147,7 @@ public class Book {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return topicNumber == book.topicNumber &&
-                serialNumber == book.serialNumber &&
                 yearOfPublication == book.yearOfPublication &&
-                totalCopies == book.totalCopies &&
-                availableCopies == book.availableCopies &&
-                cipher.equals(book.cipher) &&
                 Objects.equals(author, book.author) &&
                 Objects.equals(title, book.title) &&
                 Objects.equals(publisher, book.publisher);
@@ -164,6 +160,6 @@ public class Book {
         int result = 1;
         result = prime * result + topicNumber;
         result = prime * result + serialNumber;
-        return result;
+        return Math.abs(result);
     }
 }

@@ -20,25 +20,6 @@ public class User {
 
    private String placeOfWorkOrStudy;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return accessRights == user.accessRights && numbOfRegistration == user.numbOfRegistration && yearOfBirth == user.yearOfBirth && Objects.equals(numberOfTheTicket, user.numberOfTheTicket) && Objects.equals(fullName, user.fullName) && Objects.equals(address, user.address) && Objects.equals(placeOfWorkOrStudy, user.placeOfWorkOrStudy);
-    }
-        //TODO
-    @Override
-    public int hashCode() {
-
-        int result = 17;
-
-        result = 31 * result + numbOfRegistration;
-        result = 31 * result + (int) accessRights;
-
-        return result & Integer.MAX_VALUE;
-    }
-
     public User(char accessRights, String fullName,
                 int yearOfBirth, String address, String placeOfWorkOrStudy) throws AccessRightsException {
 
@@ -152,5 +133,27 @@ public class User {
                 ", address='" + address + '\'' +
                 ", placeOfWorkOrStudy='" + placeOfWorkOrStudy + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return accessRights == user.accessRights &&
+                yearOfBirth == user.yearOfBirth &&
+                fullName.equals(user.fullName) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(placeOfWorkOrStudy, user.placeOfWorkOrStudy);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        int prime = 3;
+        result = result * prime + numbOfRegistration;
+        result = result * prime + toGetYear();
+        result = result * prime + accessRights;
+        return Math.abs(result);
     }
 }
