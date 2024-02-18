@@ -4,18 +4,22 @@ import org.course_work.entity.User;
 
 class Bucket {
 
-   private int key;
+   private String key;
    private User user;
 
-    public Bucket(int key) {
+    protected Bucket(String key,User user) {
         this.key = key;
+        this.user = user;
     }
 
-    public int getKey() {
+    protected String getKey() {
         return key;
     }
 
-    public void setKey(int key) {
+    protected void setKey(String key) {
         this.key = key;
+    }
+    protected User getUser(){
+        return user;
     }
 }

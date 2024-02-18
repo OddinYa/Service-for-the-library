@@ -20,12 +20,12 @@ public class Book {
     private int totalCopies;
     private int availableCopies;
 
-    public Book(int topicNumber, int serialNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
+    public Book(int topicNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
 
 
         if(checkTopicNumbed(topicNumber)){
             this.topicNumber = topicNumber;
-            this.serialNumber = serialNumber;
+
             this.author = author;
             this.title = title;
             this.publisher = publisher;
@@ -147,18 +147,19 @@ public class Book {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return topicNumber == book.topicNumber &&
-                serialNumber == book.serialNumber &&
                 yearOfPublication == book.yearOfPublication &&
-                totalCopies == book.totalCopies &&
-                availableCopies == book.availableCopies &&
-                cipher.equals(book.cipher) &&
                 Objects.equals(author, book.author) &&
                 Objects.equals(title, book.title) &&
                 Objects.equals(publisher, book.publisher);
     }
 
+    //TODO
     @Override
     public int hashCode() {
-        return (topicNumber*serialNumber) % 999;
+        int prime = 31;
+        int result = 1;
+        result = prime * result + topicNumber;
+        result = prime * result + serialNumber;
+        return Math.abs(result);
     }
 }

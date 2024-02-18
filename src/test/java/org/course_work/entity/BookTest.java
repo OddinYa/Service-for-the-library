@@ -9,7 +9,7 @@ class BookTest {
     @Test
     void testCreateCipher() {
         try {
-            Book book = new Book(123, 1, "John Doe", "Sample Book", "Publisher A", 2020, 10, 5);
+            Book book = new Book(123, "John Doe", "Sample Book", "Publisher A", 2020, 10, 5);
             assertEquals("123.001", book.getCipher()); // Проверяем корректное создание шифра для книги
         } catch (BookTopicNumberException e) {
             fail("Unexpected exception was thrown");
@@ -19,7 +19,7 @@ class BookTest {
     @Test
     void testInvalidTopicNumber() {
         try {
-            new Book(1000, 1, "Invalid Author", "Invalid Title", "Invalid Publisher", 2000, 5, 3);
+            new Book(1000, "Invalid Author", "Invalid Title", "Invalid Publisher", 2000, 5, 3);
             fail("Expected BookTopicNumberException to be thrown");
         } catch (BookTopicNumberException e) {
             assertEquals("Ошибка номера темы", e.getMessage());

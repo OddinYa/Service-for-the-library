@@ -5,6 +5,7 @@ import org.course_work.exception.AccessRightsException;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class User {
    private final String numberOfTheTicket;
@@ -132,5 +133,27 @@ public class User {
                 ", address='" + address + '\'' +
                 ", placeOfWorkOrStudy='" + placeOfWorkOrStudy + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return accessRights == user.accessRights &&
+                yearOfBirth == user.yearOfBirth &&
+                fullName.equals(user.fullName) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(placeOfWorkOrStudy, user.placeOfWorkOrStudy);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        int prime = 3;
+        result = result * prime + numbOfRegistration;
+        result = result * prime + toGetYear();
+        result = result * prime + accessRights;
+        return Math.abs(result);
     }
 }
