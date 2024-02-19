@@ -4,7 +4,14 @@ import org.course_work.entity.User;
 import org.course_work.struct.map.MyMap;
 
 public class UserDAOImpl implements UserDAO{
-    MyMap map = new MyMap();
+    private MyMap map;
+
+    public UserDAOImpl(){
+        map = new MyMap();
+    }
+    public MyMap getMap(){
+        return map;
+    }
 
     @Override
     public void registerNewUser(User user) {
@@ -32,7 +39,7 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public User findUserByFullName(String fullName) {
+    public MyMap findUserByFullName(String fullName) {
         return map.findByName(fullName);
     }
 }

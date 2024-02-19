@@ -12,6 +12,14 @@ class Bucket {
         this.user = user;
     }
 
+
+    public String toString() {
+        return "Bucket{" +
+                "key='" + key + '\'' +
+                ", user=" + user +
+                '}';
+    }
+
     protected String getKey() {
         return key;
     }
@@ -21,5 +29,8 @@ class Bucket {
     }
     protected User getUser(){
         return user;
+    }
+    protected void setUser(User user){
+        this.user = user;
     }
 }

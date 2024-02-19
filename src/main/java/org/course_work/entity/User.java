@@ -150,10 +150,12 @@ public class User {
     @Override
     public int hashCode() {
         int result = 17;
-        int prime = 3;
-        result = result * prime + numbOfRegistration;
-        result = result * prime + toGetYear();
+        int prime = 31;
+
+        result = result * prime + Objects.hash(fullName, address, placeOfWorkOrStudy);
+        result = result * prime + yearOfBirth;
         result = result * prime + accessRights;
+
         return Math.abs(result);
     }
 }
