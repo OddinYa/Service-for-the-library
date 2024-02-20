@@ -11,9 +11,6 @@ public class DataDAOImpl implements DataDAO {
 
 
     }
-
-
-
     @Override
     public void registerBookIssue(String libraryCardNumber, String cipher) {
         DataOnTheIssuanceAndAcceptanceOfBooks data = new DataOnTheIssuanceAndAcceptanceOfBooks(libraryCardNumber,cipher);

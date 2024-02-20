@@ -9,5 +9,5 @@ public interface UserDAO {
     MyMap getAllUsers(); // просмотр всех зарегистрированных читателей
     void clearUserData(); // очистка данных о читателях
     User findUserByLibraryCardNumber(String libraryCardNumber); // поиск читателя по номеру читательского билета
-    User findUserByFullName(String fullName); // поиск читателя по ФИО
+    MyMap findUserByFullName(String fullName); // поиск читателя по ФИО
 }

@@ -6,21 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="+dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/repository/BookRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/repository/CRUD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/repository/DateRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/repository/UserRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/List.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/Bucket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/Bucket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/MyMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/MyMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/TreeSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/TreeSet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +31,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ServisForTheLibrary" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -235,7 +231,9 @@
       <workItem from="1708028020125" duration="1529000" />
       <workItem from="1708114172263" duration="842000" />
       <workItem from="1708115032907" duration="425000" />
-      <workItem from="1708263236033" duration="10712000" />
+      <workItem from="1708263236033" duration="11102000" />
+      <workItem from="1708361670523" duration="8361000" />
+      <workItem from="1708448258613" duration="4131000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -286,7 +284,21 @@
       <option name="project" value="LOCAL" />
       <updated>1708115144714</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="+dev">
+      <created>1708282690934</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708282690934</updated>
+    </task>
+    <task id="LOCAL-00009" summary="+dev">
+      <created>1708369418164</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708369418164</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,13 +347,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/course_work/Main.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/struct/map/MyMap.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="9" />
+          <line>53</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

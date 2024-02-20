@@ -1,14 +1,11 @@
 package org.course_work;
 
 
-import org.course_work.DAO.DataDAO;
-import org.course_work.DAO.DataDAOImpl;
-import org.course_work.entity.Book;
+
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
 import org.course_work.entity.User;
 import org.course_work.exception.AccessRightsException;
-import org.course_work.exception.BookTopicNumberException;
-import org.course_work.service.UserFile;
+
 import org.course_work.struct.linkedList.List;
 import org.course_work.struct.map.MyMap;
 
@@ -31,14 +28,30 @@ public class Main {
         list.sort();
         System.out.println(data1.toString());
         list.print();
-        User user = null;
+        User user1 = null;
+        User user2 = null;
+        User user3 = null;
+
         try {
-            user = new User('Ч',"Genadiy",1992,"ew","-");
+            user1 = new User('Ч',"Genadiy",1992,"ew","-");
+            user2 = new User('Ч',"Genadiy",1992,"ew","-");
+            user3 = new User('Ч',"Genadiy",1992,"ew","-");
         } catch (AccessRightsException e) {
 
         }
 
         MyMap map = new MyMap();
-        map.put(user.getNumberOfTheTicket(),user);
-        System.out.println(map.get(user.getNumberOfTheTicket()).toString());
+        map.put(user1.getNumberOfTheTicket(),user1);
+        map.put(user2.getNumberOfTheTicket(),user2);
+        map.put(user3.getNumberOfTheTicket(),user3);
+
+
+
+        System.out.println(map.get(user1.getNumberOfTheTicket()).toString());
+        System.out.println(map.get(user2.getNumberOfTheTicket()).toString());
+        System.out.println(map.get(user3.getNumberOfTheTicket()).toString());
+        System.out.println();
+        MyMap map1 = map.findByName("Gen");
+        map1.printMap();
+
     }}
