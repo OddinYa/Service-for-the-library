@@ -2,8 +2,9 @@ package org.course_work.struct.map;
 
 import org.course_work.entity.User;
 import org.course_work.service.BMSearch;
-import org.course_work.struct.linkedList.List;
-import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
 
 public class MyMap {
     //TODO 9.1.3
@@ -52,8 +53,12 @@ public class MyMap {
     }
 
     public User get(String key) {
-        int indx = hash(key);
-        return table[indx].getUser();
+        if (!Objects.equals(key, "")) {
+
+            int index = hash(key);
+            return table[index].getUser();
+        }
+        return null;
     }
 
     public void remove(String key) {
@@ -113,7 +118,6 @@ public class MyMap {
             }
         }
     }
-
 
 
     public void printMap() {

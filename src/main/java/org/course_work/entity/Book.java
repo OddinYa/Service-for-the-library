@@ -153,13 +153,9 @@ public class Book {
                 Objects.equals(publisher, book.publisher);
     }
 
-    //TODO
+
     @Override
     public int hashCode() {
-        int prime = 31;
-        int result = 1;
-        result = prime * result + topicNumber;
-        result = prime * result + serialNumber;
-        return Math.abs(result);
+        return Objects.hash(author, title, publisher, yearOfPublication, totalCopies, availableCopies);
     }
 }
