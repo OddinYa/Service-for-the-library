@@ -10,11 +10,12 @@ import org.course_work.exception.AccessRightsException;
 import org.course_work.struct.linkedList.List;
 import org.course_work.struct.map.MyMap;
 import org.course_work.struct.tree.Tree;
+import org.course_work.view.console.ConsoleDisplay;
 
 
 public class Main {
     public static void main(String[] args) throws Exception {
-     // ConsoleDisplay consoleDisplay = new ConsoleDisplay();
+     ConsoleDisplay consoleDisplay = new ConsoleDisplay();
 
 
 //        Tree tree = new Tree();

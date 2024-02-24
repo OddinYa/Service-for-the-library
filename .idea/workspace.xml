@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="+dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/FileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/UserFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/UserFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/List.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/MyMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/MyMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +244,9 @@
       <workItem from="1708542520377" duration="7110000" />
       <workItem from="1708713374743" duration="4066000" />
       <workItem from="1708722530036" duration="3714000" />
-      <workItem from="1708765069299" duration="6562000" />
+      <workItem from="1708765069299" duration="7205000" />
+      <workItem from="1708774241117" duration="4169000" />
+      <workItem from="1708778433229" duration="359000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -316,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708770325730</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="+dev">
+      <created>1708771803318</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708771803318</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,6 +369,11 @@
           <line>20</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -361,10 +382,5 @@
         <PinnedItemInfo parentTag="org.course_work.struct.tree.Tree" memberName="root" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="GradleRunConfiguration">
-        <watch expression="tree.root.left" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

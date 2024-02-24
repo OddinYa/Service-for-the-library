@@ -1,10 +1,12 @@
 package org.course_work.struct.tree;
 
 import org.course_work.entity.Book;
+import org.course_work.struct.MyStruct;
 
 import java.util.Arrays;
-
-public class Tree {
+//AVL TREE
+//АВЛ ДЕРЕВО
+public class Tree extends MyStruct {
 
     private Node root;
 

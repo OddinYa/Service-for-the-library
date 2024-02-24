@@ -2,13 +2,14 @@ package org.course_work.service;
 
 import org.course_work.entity.User;
 import org.course_work.exception.AccessRightsException;
+import org.course_work.struct.map.MyMap;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 
-public class UserFile implements FileWriter<User>,FileReader{
+public class UserFile implements FileWriter<User>,FileReader<MyMap>{
     java.io.FileWriter fw;
     BufferedWriter bufferedWriter;
 
@@ -24,7 +25,7 @@ public class UserFile implements FileWriter<User>,FileReader{
                 file.createNewFile();
             }
 
-            fw = new java.io.FileWriter(file);
+            fw = new java.io.FileWriter(file,true);
             bufferedWriter = new BufferedWriter(fw);
 
         }catch (IOException e){
@@ -34,9 +35,11 @@ public class UserFile implements FileWriter<User>,FileReader{
 
 
     @Override
-    public void readerFile() {
+    public MyMap readerFile() {
+        MyMap map = new MyMap();
         try (BufferedReader br = new BufferedReader(new java.io.FileReader(file))) {
             String line;
+
             while ((line = br.readLine()) != null) {
 
                 String[] values = line.replaceAll("[{} ]", "").split(",");
@@ -50,12 +53,13 @@ public class UserFile implements FileWriter<User>,FileReader{
                         parseValue("placeOfWorkOrStudy", values)
                 );
 
-                System.out.println(user);
+                   map.put(user.getNumberOfTheTicket(),user);
 
             }
         } catch (IOException | AccessRightsException e) {
             e.printStackTrace();
         }
+        return map;
     }
 
     @Override

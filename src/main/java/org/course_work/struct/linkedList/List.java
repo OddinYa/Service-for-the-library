@@ -1,8 +1,9 @@
 package org.course_work.struct.linkedList;
 
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
+import org.course_work.struct.MyStruct;
 
-public class List {
+public class List extends MyStruct {
     private Node head;
 
     public void add(DataOnTheIssuanceAndAcceptanceOfBooks data ){
