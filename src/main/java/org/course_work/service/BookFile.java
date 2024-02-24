@@ -2,13 +2,15 @@ package org.course_work.service;
 
 import org.course_work.entity.Book;
 import org.course_work.exception.BookTopicNumberException;
+import org.course_work.struct.map.MyMap;
+import org.course_work.struct.tree.Tree;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 
-public class BookFile implements FileWriter<Book>,FileReader {
+public class BookFile implements FileWriter<Book>,FileReader<Tree> {
     java.io.FileWriter fw;
     BufferedWriter bufferedWriter;
 
@@ -23,7 +25,7 @@ public class BookFile implements FileWriter<Book>,FileReader {
                 file.createNewFile();
             }
 
-            fw = new java.io.FileWriter(file);
+            fw = new java.io.FileWriter(file,true);
             bufferedWriter = new BufferedWriter(fw);
 
         }catch (IOException e){
@@ -41,7 +43,7 @@ public class BookFile implements FileWriter<Book>,FileReader {
     }
 
     @Override
-    public void readerFile() {
+    public Tree readerFile() {
         try (BufferedReader br = new BufferedReader(new java.io.FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -64,6 +66,7 @@ public class BookFile implements FileWriter<Book>,FileReader {
         } catch (IOException | BookTopicNumberException e ) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override

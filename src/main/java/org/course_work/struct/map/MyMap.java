@@ -2,11 +2,12 @@ package org.course_work.struct.map;
 
 import org.course_work.entity.User;
 import org.course_work.service.BMSearch;
+import org.course_work.struct.MyStruct;
 
 import java.util.Objects;
 
 
-public class MyMap {
+public class MyMap extends MyStruct {
     //TODO 9.1.3
     private int step = 2;
     private int length = 16;

@@ -1,13 +1,19 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.User;
+import org.course_work.service.UserFile;
 import org.course_work.struct.map.MyMap;
 
 public class UserDAOImpl implements UserDAO{
     private MyMap map;
+    private UserFile userFile;
+
 
     public UserDAOImpl(){
-        map = new MyMap();
+        userFile = new UserFile();
+        map = userFile.readerFile();
+        closeStream();
+
     }
     public MyMap getMap(){
         return map;
@@ -16,6 +22,8 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public void registerNewUser(User user) {
         map.put(user.getNumberOfTheTicket(),user);
+        userFile.writeToFile(user);
+
     }
 
     @Override
@@ -41,5 +49,9 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public MyMap findUserByFullName(String fullName) {
         return map.findByName(fullName);
+    }
+
+    public void closeStream(){
+        userFile.closeFile();
     }
 }
