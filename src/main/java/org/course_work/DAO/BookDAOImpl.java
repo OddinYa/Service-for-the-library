@@ -13,7 +13,7 @@ public class BookDAOImpl implements BookDAO{
     public void addNewBook(Book book) {
 
         try {
-            tree.insert(book);
+            tree.add(book);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -21,7 +21,7 @@ public class BookDAOImpl implements BookDAO{
 
     @Override
     public void removeBook(String cipher) {
-        tree.delete(findBookByCipher(cipher));
+       // tree.delete(findBookByCipher(cipher));
     }
 
     @Override

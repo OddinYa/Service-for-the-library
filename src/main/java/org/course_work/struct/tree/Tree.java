@@ -6,122 +6,43 @@ import java.util.Arrays;
 
 public class Tree {
 
-    private Node rootNode;
+    private Node root;
 
-    public Tree() {
-        rootNode = null;
+    void updateHeight(Node n) {
+        n.height = 1 + Math.max(height(n.left), height(n.right));
+    }
+    int height(Node n) {
+        return n == null ? -1 : n.height;
     }
 
-    public boolean find(Node node, int hash) {
+    int getBalance(Node n) {
+        return (n == null) ? 0 : height(n.right) - height(n.left);
+    }
 
-        if (node == null) {
-            return false;
-        }
-        if (hash(node.getBook().getCipher()) == hash) {
-            return true;
-        }
-        if (hash(node.getBook().getCipher()) > hash) {
-            return find(node.getLeft(), hash);
+    public void add(Book book){
+        String key = book.getCipher();
+        root = insert(root,key,book);
+    }
+
+    private Node insert(Node root, String key, Book book) {
+        int hash = hash(key);
+        if (root == null) {
+            return new Node(null, null, book, key, hash);
+        } else if (hash < root.hash) {
+            root.left = insert(root.left, key, book);
+        } else if (hash > root.hash) {
+            root.right = insert(root.right, key, book);
         } else {
-            return find(node.getRight(), hash);
+            throw new RuntimeException("Duplicate Key!");
         }
-    }
-
-    public void insert(Book book) throws Exception {
-
-        int hash = hash(book.getCipher());
-        Node newNode = new Node(null, null, book, book.getCipher(), hash);
-
-        boolean flag = find(rootNode, hash);
-
-        if (rootNode == null) {
-            rootNode = newNode;
-
-        } else {
-            if (flag) {
-                boolean equals = search(book.getCipher()).equals(book);
-
-                if (equals) {
-                    System.out.println("Вы пытаетесь добавить уже существующую книгу!");
-                    return;
-                }
-            }
-            Node current = rootNode;
-            Node parentNode;
-
-            while (true) {
-                parentNode = current;
-
-
-                if (hash < current.getHash()) {
-                    current = current.getLeft();
-                    if (current == null) {
-                        parentNode.setLeft(newNode);
-
-                        rootNode = balance(rootNode);
-                        updateHeight(parentNode);
-                        break;
-                    }
-
-                } else {
-                    current = current.getRight();
-                    if (current == null) {
-                        parentNode.setRight(newNode);
-
-                        rootNode = balance(rootNode);
-                        updateHeight(parentNode);
-                        break;
-                    }
-                }
-            }
-        }
-
-    }
-
-
-    public void delete(Book book) {
-
-    }
-
-    public Book search(String chipher) throws Exception {
-        int hash = hash(chipher);
-        Book result;
-
-        Node current = rootNode;
-        Node parentNode;
-
-        while (current != null) {
-            parentNode = current;
-
-            if (current.getHash() == hash && current.getBook().getCipher().equals(chipher)) {
-                return result = current.getBook();
-
-            } else if (current.getHash() > hash) {
-                current = parentNode.getLeft();
-
-            } else {
-                current = parentNode.getRight();
-            }
-
-        }
-        throw new Exception("Книга с заданным шифром не найдена");
-    }
-
-
-
-    private int getBalanceFactor(Node node) {
-        if (node == null) {
-            return 0;
-        }
-
-        return getHeight(node.getLeft()) - getHeight(node.getRight());
+        return rebalance(root);
     }
 
     public Book[] traversal() {
         Book[] result = new Book[10];
         int[] index = {0};
 
-        traversal(rootNode, result, index);
+        traversal(root, result, index);
 
         Book[] finalResult = new Book[index[0]];
         System.arraycopy(result, 0, finalResult, 0, index[0]);
@@ -131,14 +52,14 @@ public class Tree {
 
     private void traversal(Node node, Book[] array, int[] index) {
         if (node != null) {
-            traversal(node.getLeft(), array, index);
+            traversal(node.left, array, index);
 
             if (index[0] == array.length) {
                 array = increaseArraySize(array);
             }
-            array[index[0]++] = node.getBook();
+            array[index[0]++] = node.book;
 
-            traversal(node.getRight(), array, index);
+            traversal(node.right, array, index);
         }
     }
 
@@ -157,85 +78,72 @@ public class Tree {
 
     }
 
-    private Node balance(Node node) {
-        if (node == null) {
-            return null;
+   private Node rotateRight(Node y) {
+        Node x = y.left;
+        Node z = x.right;
+        x.right = y;
+        y.left = z;
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+   private Node rotateLeft(Node y) {
+        Node x = y.right;
+        Node z = x.left;
+        x.left = y;
+        y.right = z;
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+   private Node delete(Node node, int hash) {
+       if (node == null) {
+           return node;
+       } else if (node.hash > hash) {
+           node.left = delete(node.left, hash);
+       } else if (node.hash < hash) {
+           node.right = delete(node.right, hash);
+       } else {
+           if (node.left == null || node.right == null) {
+               node = (node.left == null) ? node.right : node.left;
+           } else {
+               Node mostLeftChild = mostLeftChild(node.right);
+               node.key = mostLeftChild.key;
+               node.right = delete(node.right, node.hash);
+           }
+       }
+       if (node != null) {
+           node = rebalance(node);
+       }
+       return node;
+   }
+    private Node mostLeftChild(Node node) {
+        if (node.left == null) {
+            return node;
         }
+        return mostLeftChild(node.left);
+    }
+    private Node rebalance(Node z) {
+        updateHeight(z);
 
-        int balanceFactor = getBalanceFactor(node);
-
-        if (balanceFactor > 1) {
-            if (getBalanceFactor(node.getLeft()) < 0) {
-                // Необходим большой правый поворот
-                return bigRightRotate(node);
+        int balance = getBalance(z);
+        if (balance > 1) {
+            if (getBalance(z.right) >= 0) {
+                z = rotateLeft(z);
             } else {
-                return rightRotate(node);
+                z.right = rotateRight(z.right);
+                z = rotateLeft(z);
+            }
+        } else if (balance < -1) {
+            if (getBalance(z.left) <= 0)
+                z = rotateRight(z);
+            else {
+                z.left = rotateLeft(z.left);
+                z = rotateRight(z);
             }
         }
-        if (balanceFactor < -1) {
-            if (getBalanceFactor(node.getRight()) > 0) {
-                // Необходим большой левый поворот
-                return bigLeftRotate(node);
-            } else {
-                return leftRotate(node);
-            }
-        }
-
-        return node;
+        return z;
     }
-
-    private int getHeight(Node node) {
-        if (node == null) {
-            return 0;
-        } else {
-            return 1 + Math.max(getHeight(node.getLeft()), getHeight(node.getRight()));
-        }
-    }
-
-    private void updateHeight(Node node) {
-        if (node == null) {
-            return;
-        }
-        int leftHeight = (node.getLeft() == null) ? 0 : node.getLeft().getHeight();
-        int rightHeight = (node.getRight() == null) ? 0 : node.getRight().getHeight();
-        node.setHeight(1 + Math.max(leftHeight, rightHeight));
-    }
-
-
-    private Node rightRotate(Node a) {
-        Node b = a.getLeft();
-        a.setLeft(b.getRight());
-        b.setRight(a);
-
-        updateHeight(a);
-        updateHeight(b);
-
-        return b;
-    }
-
-    private Node leftRotate(Node b) {
-        Node a = b.getRight();
-        b.setRight(a.getLeft());
-        a.setLeft(b);
-
-        updateHeight(b);
-        updateHeight(a);
-
-        return a;
-    }
-    private Node bigLeftRotate(Node x){
-
-        x.setLeft(leftRotate(x.getLeft()));
-        updateHeight(x.getLeft());
-        return rightRotate(x);
-    }
-
-    private Node bigRightRotate(Node y){
-
-        y.setRight(rightRotate(y.getRight()));
-        updateHeight(y.getRight());
-        return leftRotate(y);
-    }
-
 
 }

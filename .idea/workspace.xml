@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="+dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/TreeSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/tree/Tree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +237,7 @@
       <workItem from="1708542520377" duration="7110000" />
       <workItem from="1708713374743" duration="4066000" />
       <workItem from="1708722530036" duration="3714000" />
-      <workItem from="1708765069299" duration="5146000" />
+      <workItem from="1708765069299" duration="6562000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -309,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708452661501</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="+dev">
+      <created>1708770325730</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708770325730</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,17 +353,18 @@
           <line>20</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/Main.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.course_work.struct.tree.Tree" memberName="rootNode" />
+        <PinnedItemInfo parentTag="org.course_work.struct.tree.Tree" memberName="root" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="tree.root.left" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
