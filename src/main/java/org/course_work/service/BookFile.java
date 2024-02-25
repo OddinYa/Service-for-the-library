@@ -14,7 +14,7 @@ public class BookFile implements FileWriter<Book>,FileReader<Tree> {
     java.io.FileWriter fw;
     BufferedWriter bufferedWriter;
 
-     private  String fileName = "BookRepo.txt";
+     private  String fileName = "bookRepo.txt";
      private  File file;
 
     public BookFile(){
@@ -49,7 +49,7 @@ public class BookFile implements FileWriter<Book>,FileReader<Tree> {
             while ((line = br.readLine()) != null) {
 
                 String[] values = line.replaceAll("[{} ]", "").split(",");
-
+                if(values.length > 1){
                 Book book = new Book(
                         Integer.parseInt(parseValue("topicNumber",values)),
                         parseValue("author",values),
@@ -58,9 +58,12 @@ public class BookFile implements FileWriter<Book>,FileReader<Tree> {
                         Integer.parseInt(parseValue("yearOfPublication", values)),
                         Integer.parseInt(parseValue("totalCopies", values)),
                         Integer.parseInt(parseValue("availableCopies", values))
-                );
+                );}
+                else {
 
-                System.out.println(book); // delete
+                }
+
+
 
             }
         } catch (IOException | BookTopicNumberException e ) {
@@ -72,6 +75,9 @@ public class BookFile implements FileWriter<Book>,FileReader<Tree> {
     @Override
     public void writeToFile(Book data) {
         try {
+            if (file.length() != 0) {
+                bufferedWriter.newLine();
+            }
             bufferedWriter.write(data.toString());
             bufferedWriter.newLine();
         } catch (IOException e) {

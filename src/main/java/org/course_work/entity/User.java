@@ -8,7 +8,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class User {
-   private final String numberOfTheTicket;
+
+    private  String numberOfTheTicket;
    private char accessRights;
    private static int lastAssignedNumber = 0;
    private  int numbOfRegistration;
@@ -122,6 +123,10 @@ public class User {
         this.placeOfWorkOrStudy = placeOfWorkOrStudy;
     }
 
+    @Deprecated
+    public void setNumberOfTheTicket(String numberOfTheTicket) {
+        this.numberOfTheTicket = numberOfTheTicket;
+    }
     @Override
     public String toString() {
         return "User{" +

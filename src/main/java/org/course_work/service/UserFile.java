@@ -43,7 +43,7 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
             while ((line = br.readLine()) != null) {
 
                 String[] values = line.replaceAll("[{} ]", "").split(",");
-
+                if(values.length > 1){
 
                 User user = new User(
                         parseAccessRights(values[1]),
@@ -53,7 +53,10 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
                         parseValue("placeOfWorkOrStudy", values)
                 );
 
-                   map.put(user.getNumberOfTheTicket(),user);
+                   map.put(user.getNumberOfTheTicket(),user);}
+                else {
+
+                }
 
             }
         } catch (IOException | AccessRightsException e) {
@@ -65,6 +68,9 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
     @Override
     public void writeToFile(User data) {
         try {
+            if (file.length() != 0) {
+                bufferedWriter.newLine();
+            }
             bufferedWriter.write(data.toString());
             bufferedWriter.newLine();
         } catch (IOException e) {

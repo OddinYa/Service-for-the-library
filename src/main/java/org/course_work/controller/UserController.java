@@ -6,7 +6,7 @@ import org.course_work.exception.AccessRightsException;
 
 public class UserController {
 
-    UserDAOImpl userDAO;
+    private UserDAOImpl userDAO;
 
     public UserController(){
         userDAO = new UserDAOImpl();
@@ -32,5 +32,9 @@ public class UserController {
 
     public User find(String code) {
         return userDAO.findUserByLibraryCardNumber(code);
+    }
+
+    public void closeWR(){
+        userDAO.closeStream();
     }
 }
