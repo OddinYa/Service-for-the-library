@@ -1,18 +1,23 @@
 package org.course_work.entity;
 
+import org.course_work.controller.DataController;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class DataOnTheIssuanceAndAcceptanceOfBooks  {
+public class DataOnTheIssuanceAndAcceptanceOfBooks implements Entity {
    private String libraryCardNumber;
    private String cipher;
    private String dateOfIssue;
    private String returnDate;
 
+   private boolean flagActive;
+
    public DataOnTheIssuanceAndAcceptanceOfBooks(String libraryCardNumber, String cipher) {
 
+         this.flagActive = true;
          this.libraryCardNumber = libraryCardNumber;
          this.cipher = cipher;
          dateOfIssue = dateToString();
@@ -44,6 +49,7 @@ public class DataOnTheIssuanceAndAcceptanceOfBooks  {
 
    public void setReturnDate() {
       this.returnDate = dateToString();
+      this.flagActive = false;
    }
 
    public String dateToString(){
@@ -95,4 +101,10 @@ public class DataOnTheIssuanceAndAcceptanceOfBooks  {
    public int hashCode() {
       return Objects.hash(libraryCardNumber, cipher, dateOfIssue, returnDate);
    }
+
+   @Override
+   public void getCart(int numb) {
+
+   }
+
 }

@@ -4,7 +4,7 @@ import org.course_work.exception.BookTopicNumberException;
 
 import java.util.Objects;
 
-public class Book {
+public class Book implements Entity {
     private String cipher;
     private int topicNumber;
 
@@ -157,5 +157,10 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(author, title, publisher, yearOfPublication, totalCopies, availableCopies);
+    }
+
+    @Override
+    public void getCart(int numb) {
+
     }
 }

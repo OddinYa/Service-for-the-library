@@ -26,4 +26,15 @@ public class DataDAOImpl implements DataDAO {
             System.out.println("Ошибка, пользовалея с такой книгой не найдено!");
         }
     }
+
+    public DataOnTheIssuanceAndAcceptanceOfBooks[] getDataArr(String tNumb){
+        List listResult = list.getDataWithCardNumber(tNumb);
+        DataOnTheIssuanceAndAcceptanceOfBooks[] result = listResult.listToArray();
+
+        return result;
+    }
+
+    public DataOnTheIssuanceAndAcceptanceOfBooks getTicketAndCipher(String ticket , String cipher){
+      return  list.find(ticket,cipher);
+    }
 }

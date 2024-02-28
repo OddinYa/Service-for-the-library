@@ -6,40 +6,41 @@ import org.course_work.struct.MyStruct;
 public class List extends MyStruct {
     private Node head;
 
-    public void add(DataOnTheIssuanceAndAcceptanceOfBooks data ){
+    public void add(DataOnTheIssuanceAndAcceptanceOfBooks data) {
 
-        if(head==null){
+        if (head == null) {
             head = new Node(data);
-        }else {
+        } else {
             Node node = head;
 
-            while (node.next!=null){
+            while (node.next != null) {
                 node = node.next;
             }
             node.next = new Node(data);
         }
     }
 
-    public void remove(DataOnTheIssuanceAndAcceptanceOfBooks data){
-        if(head==null){
+    public void remove(DataOnTheIssuanceAndAcceptanceOfBooks data) {
+        if (head == null) {
             return;
         }
-        if(data.equals(head.data)){
+        if (data.equals(head.data)) {
             head = head.next;
             return;
         }
 
         Node temp = head;
-        while(head.next != null){
+        while (head.next != null) {
 
-            if(data.equals(temp.next.data)){
+            if (data.equals(temp.next.data)) {
                 temp.next = temp.next.next;
                 return;
             }
             temp = head.next;
         }
     }
-    public void sort(){
+
+    public void sort() {
         head = mergeSort(head);
     }
 
@@ -89,17 +90,18 @@ public class List extends MyStruct {
         return result;
     }
 
-    public void print(){
-        while (head!=null){
+    public void print() {
+        while (head != null) {
             System.out.println(head.data.toString());
             head = head.next;
         }
     }
-    public DataOnTheIssuanceAndAcceptanceOfBooks find(String libraryCardNumber,String cipher){
+
+    public DataOnTheIssuanceAndAcceptanceOfBooks find(String libraryCardNumber, String cipher) {
         DataOnTheIssuanceAndAcceptanceOfBooks result;
         Node cur = head;
-        while (cur!=null){
-            if(cur.data.getCipher().equals(cipher) && cur.data.getLibraryCardNumber().equals(libraryCardNumber)){
+        while (cur != null) {
+            if (cur.data.getCipher().equals(cipher) && cur.data.getLibraryCardNumber().equals(libraryCardNumber)) {
                 result = cur.data;
                 return result;
             }
@@ -110,5 +112,51 @@ public class List extends MyStruct {
 
     }
 
+    public List getDataWithCardNumber(String card) {
+
+        Node temp = head;
+        List listResult = new List();
+
+        while (temp != null) {
+
+            DataOnTheIssuanceAndAcceptanceOfBooks result = temp.data;
+
+            if (result.getLibraryCardNumber().equals(card)) {
+                listResult.add(result);
+            }
+
+            temp = temp.next;
+        }
+        return listResult;
+    }
+
+    public int length(){
+        Node temp = head;
+        int result = 0;
+
+        while (temp!=null){
+            result++;
+            temp = temp.next;
+        }
+
+        return result;
+    }
+
+    public DataOnTheIssuanceAndAcceptanceOfBooks[] listToArray(){
+
+        this.sort();
+
+        int length = this.length();
+
+        DataOnTheIssuanceAndAcceptanceOfBooks[] result = new DataOnTheIssuanceAndAcceptanceOfBooks[length];
+        Node temp = head;
+        for (int i = 0; i < length; i++) {
+            result[i] = temp.data;
+            temp = temp.next;
+        }
+        return result;
+    }
 }
+
+
 
