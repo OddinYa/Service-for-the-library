@@ -7,8 +7,8 @@ import org.course_work.entity.Book;
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
 import org.course_work.entity.User;
 import org.course_work.exception.AccessRightsException;
+import org.course_work.exception.BookTopicNumberException;
 import org.course_work.service.PasswordHasher;
-import org.course_work.struct.tree.Tree;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -93,7 +93,7 @@ public class ConsoleDisplay extends Thread {
                         String placeOfWorkOrStudy = reader.readLine();
 
                         User user = userController.registration(A.charAt(0), name, age, address, placeOfWorkOrStudy);
-                        System.out.println(userController.getCard(user));
+                        System.out.println(userController.getInfoShort(user));
 
                     } else {
                         System.out.println("Ошибка номера");
@@ -122,9 +122,9 @@ public class ConsoleDisplay extends Thread {
             switch (code) {
                 case "1":
                     System.out.println("Введите шифр книги:");
-                    String chipher = reader.readLine();
+                    String cipher = reader.readLine();
 
-                    Book book = bookController.getBook(chipher);
+                    Book book = bookController.getBook(cipher);
 
                     if (book == null) {
                         System.out.println("Книга не найдена!");
@@ -147,7 +147,7 @@ public class ConsoleDisplay extends Thread {
                     int countBa = 1;
                     for (Book b : allBook) {
                         if (b.getAvailableCopies() > 0) {
-                            b.getCart(countBa);
+                            b.getCart(countBa);  // TODO
                             countBa++;
                         }
                     }
@@ -160,18 +160,13 @@ public class ConsoleDisplay extends Thread {
                         if (bookToGet == null) {
                             System.out.println("Ошибка шифра книги!");
                         }
-                        dataController.registration(user.getNumberOfTheTicket(), bookToGet.getCipher());
+                        dataController.registrationData(user.getNumberOfTheTicket(), bookToGet.getCipher());
 
                     }
 
                     break;
                 case "3":
-                    DataOnTheIssuanceAndAcceptanceOfBooks[] arr = dataController.getAllData(user.getNumberOfTheTicket());
-                    int countD = 1;
-                    for (DataOnTheIssuanceAndAcceptanceOfBooks data : arr) {
-                        data.toInfo(count);
-                        countD++;
-                    }
+                    System.out.println(userController.getInfo(user, dataController, bookController));
                     break;
                 case "4":
                     System.out.println("Ввидите имя автора: ");
@@ -182,7 +177,7 @@ public class ConsoleDisplay extends Thread {
                     } else {
                         int countB = 1;
                         for (Book b : books) {
-                            b.toInfo(countB);
+                           System.out.println(bookController.getInfo(b));
                             countB++;
                         }
                     }
@@ -194,7 +189,7 @@ public class ConsoleDisplay extends Thread {
                     if (reqBook == null) {
                         System.out.println("Книги с таким шрифтом не найдена!");
                     }
-                    System.out.println(reqBook.info());
+                    System.out.println(bookController.getInfo(reqBook));
                     break;
                 case "6":
                     flag = true;
@@ -229,13 +224,41 @@ public class ConsoleDisplay extends Thread {
                         User[] arrUsers = userController.getAllUsers();
                         int count = 1;
                         for (User u : arrUsers) {
-                            u.getCart(count);
+                          System.out.println(userController.getInfoShort(u,count));
                             count++;
                         }
                         break;
                     case "2":
-                        System.out.println("Добавить книгу:");
-                        bookController.registration();
+                        System.out.println("Добавить книгу");
+                        System.out.println("Введите номер темы от 1  до 999:");
+
+                        int topicNumber = Integer.parseInt(reader.readLine());
+
+                        System.out.println("Введите автора:");
+                        String author = reader.readLine();
+
+                        System.out.println("Введите название:");
+                        String title = reader.readLine();
+
+                        System.out.println("Введите издателя:");
+                        String publisher = reader.readLine();
+
+                        System.out.println("Введите год публикации:");
+                        int yearOfPublication = Integer.parseInt(reader.readLine());
+
+                        System.out.println("Введите общее количество копий:");
+                        int totalCopies = Integer.parseInt(reader.readLine());
+
+                        System.out.println("Введите доступное количество копий:");
+                        int availableCopies = Integer.parseInt(reader.readLine());
+
+                        Book book = null;
+                        try {
+                            book = new Book(topicNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
+                        } catch (BookTopicNumberException e) {
+                            System.out.println("Ошибка Ввода Номера темы");
+                        }
+                        bookController.registrationBook(book);
                         System.out.println("Книга зарегистрирована!");
                         break;
                     case "3":
@@ -269,7 +292,7 @@ public class ConsoleDisplay extends Thread {
                         String name = reader.readLine();
                         User[] arrUser = userController.getListFindFullName(name);
                         for (int i = 0; i < arrUser.length; i++) {
-                            arrUser[i].getCart(i + 1);
+                           userController.getInfo(arrUser[i],dataController,bookController);
                         }
                         System.out.println("Поиск завершен!");
                         break;

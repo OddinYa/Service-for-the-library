@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class User implements Comparable,Entity {
+public class User implements Comparable<User>,Entity {
 
     private  String numberOfTheTicket;
    private char accessRights;
@@ -167,20 +167,14 @@ public class User implements Comparable,Entity {
 
 
 
-    @Override
-    public int compareTo(@NotNull Object o) {
-        if (this == o) {
-            return 0;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return -1;
-        }
-        User otherUser = (User) o;
-        return this.fullName.compareTo(otherUser.fullName);
-    }
+
     @Override
     public void getCart(int numb){
         System.out.println(numb+". Номер билета: "+this.getNumberOfTheTicket()+",ФИО: "+this.getFullName());
     }
 
+    @Override
+    public int compareTo(@NotNull User o) {
+        return this.fullName.compareTo(o.fullName);
+    }
 }

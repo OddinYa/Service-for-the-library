@@ -33,4 +33,13 @@ public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfB
         }
 
     }
+    public void closeFile(){
+        try {
+            if (bufferedWriter != null) {
+                bufferedWriter.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

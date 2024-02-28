@@ -1,13 +1,15 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
+import org.course_work.service.DataIABFile;
 import org.course_work.struct.linkedList.List;
 
 public class DataDAOImpl implements DataDAO {
 
     private List list;
+    private DataIABFile data;
     public DataDAOImpl(){
-        list = new List();
+        list = data.readerFile();
 
 
     }
@@ -36,5 +38,9 @@ public class DataDAOImpl implements DataDAO {
 
     public DataOnTheIssuanceAndAcceptanceOfBooks getTicketAndCipher(String ticket , String cipher){
       return  list.find(ticket,cipher);
+    }
+
+    public void close(){
+        data.closeFile();
     }
 }

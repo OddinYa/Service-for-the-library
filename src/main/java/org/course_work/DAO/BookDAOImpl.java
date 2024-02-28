@@ -5,9 +5,12 @@ import org.course_work.service.BookFile;
 import org.course_work.service.MergeSort;
 import org.course_work.struct.tree.Tree;
 
+import java.util.Comparator;
+
 public class BookDAOImpl implements BookDAO{
     private Tree tree;
 
+    MergeSort<Book> bookMergeSort;
     private BookFile fileBook;
 
     public BookDAOImpl(){
@@ -34,9 +37,12 @@ public class BookDAOImpl implements BookDAO{
 
     @Override
     public Book[] getAllBooks() {
+        bookMergeSort = new MergeSort<>();
 
         Book[] books = tree.traversal();
+        Book[] sorted = bookMergeSort.sort(books);
 
+        return sorted;
     }
 
     @Override

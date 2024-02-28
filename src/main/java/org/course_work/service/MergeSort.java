@@ -3,13 +3,8 @@ package org.course_work.service;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class MergeSort<T> implements Sort<T> {
+public class MergeSort<T extends Comparable<? super T>> implements Sort<T> {
 
-    private Comparator<T> comparator;
-
-    public MergeSort(Comparator<T> comparator) {
-        this.comparator = comparator;
-    }
 
     @Override
     public T[] sort(T[] arr) {
@@ -29,11 +24,11 @@ public class MergeSort<T> implements Sort<T> {
 
     private T[] merge(T[] left, T[] right) {
         int totalLength = left.length + right.length;
-        T[] result = (T[]) new Object[totalLength];
+        T[] result = (T[]) new Comparable[totalLength];
 
         int leftPointer = 0, rightPointer = 0, resultPointer = 0;
         while (leftPointer < left.length && rightPointer < right.length) {
-            if (comparator.compare(left[leftPointer], right[rightPointer]) <= 0) {
+            if (left[leftPointer].compareTo(right[rightPointer]) <= 0) {
                 result[resultPointer++] = left[leftPointer++];
             } else {
                 result[resultPointer++] = right[rightPointer++];

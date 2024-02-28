@@ -24,15 +24,6 @@ public class UserController {
         return user;
 
     }
-
-    public String getCard(User user) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append("Ваш номер читательсого белета: " + user.getNumberOfTheTicket());
-
-        return stringBuilder.toString();
-    }
-
     public User find(String code) {
         return userDAO.findUserByLibraryCardNumber(code);
     }
@@ -44,7 +35,7 @@ public class UserController {
     public String getInfo(User user, DataController data, BookController bookController) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("Номер билета: " + user.getNumberOfTheTicket() + ",ФИО");
+        stringBuilder.append("Номер билета: " + user.getNumberOfTheTicket() + ",ФИО " + user.getFullName());
         stringBuilder.append("Книги на руках: ");
 
         DataOnTheIssuanceAndAcceptanceOfBooks[] findData = data.getList(user.getNumberOfTheTicket());
@@ -57,6 +48,21 @@ public class UserController {
             }
 
         }
+
+        return stringBuilder.toString();
+    }
+    public String getInfoShort(User user,int index) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(index +". Номер билета: " + user.getNumberOfTheTicket() + ",ФИО "+ user.getFullName());
+
+        return stringBuilder.toString();
+    }
+    public String getInfoShort(User user) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("Номер билета: " + user.getNumberOfTheTicket() + ",ФИО "+ user.getFullName());
 
         return stringBuilder.toString();
     }
