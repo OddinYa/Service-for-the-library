@@ -6,13 +6,18 @@ import org.course_work.entity.Book;
 public class BookController {
 
     BookDAOImpl bookDAO;
-
-
     public BookController(){
         bookDAO = new BookDAOImpl();
     }
-    public Book getBook(String chipher){
-      return bookDAO.findBookByCipher(chipher);
+    public Book getBook(String cipher){
+      return bookDAO.findBookByCipher(cipher);
     }
-    
+
+    public Book[] getAllBooks(){
+
+    }
+
+    public void closeWR(){
+        bookDAO.close();
+    }
 }

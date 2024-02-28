@@ -142,7 +142,7 @@ public class ConsoleDisplay extends Thread {
                     }
                     break;
                 case "2":
-                    Book[] allBook = bookController.getAll();
+                    Book[] allBook = bookController.getAllBooks();
                     System.out.println("Напишите шифр книги которую хотите взять или напишите EXIT");
                     int countBa = 1;
                     for (Book b : allBook) {
@@ -166,7 +166,7 @@ public class ConsoleDisplay extends Thread {
 
                     break;
                 case "3":
-                    DataOnTheIssuanceAndAcceptanceOfBooks[] arr = dataController.getAll(user.getNumberOfTheTicket());
+                    DataOnTheIssuanceAndAcceptanceOfBooks[] arr = dataController.getAllData(user.getNumberOfTheTicket());
                     int countD = 1;
                     for (DataOnTheIssuanceAndAcceptanceOfBooks data : arr) {
                         data.toInfo(count);
@@ -226,7 +226,7 @@ public class ConsoleDisplay extends Thread {
                 switch (code) {
                     case "1":
                         System.out.println("Список читателей :");
-                        User[] arrUsers = userController.getAll();
+                        User[] arrUsers = userController.getAllUsers();
                         int count = 1;
                         for (User u : arrUsers) {
                             u.getCart(count);

@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="+dev">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/MergeSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/Sort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/linkedList/List.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -252,7 +248,7 @@
       <workItem from="1708814249895" duration="1249000" />
       <workItem from="1708964872671" duration="4101000" />
       <workItem from="1709060385695" duration="2326000" />
-      <workItem from="1709135020493" duration="8970000" />
+      <workItem from="1709135020493" duration="10408000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -345,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708778859254</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="+dev">
+      <created>1709144411645</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1709144411645</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

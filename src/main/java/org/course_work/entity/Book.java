@@ -2,9 +2,10 @@ package org.course_work.entity;
 
 import org.course_work.exception.BookTopicNumberException;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Book implements Entity {
+public class Book implements Entity, Comparator<Book> {
     private String cipher;
     private int topicNumber;
 
@@ -139,6 +140,11 @@ public class Book implements Entity {
                 ", totalCopies=" + totalCopies +
                 ", availableCopies=" + availableCopies +
                 '}';
+    }
+
+    @Override
+    public int compare(Book o1, Book o2) {
+        return o1.getTitle().compareTo(o2.getTitle());
     }
 
     @Override

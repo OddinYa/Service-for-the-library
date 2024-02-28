@@ -18,4 +18,8 @@ public class DataController {
    public DataOnTheIssuanceAndAcceptanceOfBooks getData(String ticket,String cipher){
        return  dataDAO.getTicketAndCipher(ticket,cipher);
    }
+
+   public void closeWR(){
+        dataDAO.close();
+   }
 }
