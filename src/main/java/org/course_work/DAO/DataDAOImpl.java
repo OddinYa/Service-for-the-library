@@ -1,13 +1,15 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
+import org.course_work.service.DataIABFile;
 import org.course_work.struct.linkedList.List;
 
 public class DataDAOImpl implements DataDAO {
 
     private List list;
+    private DataIABFile data;
     public DataDAOImpl(){
-        list = new List();
+        list = data.readerFile();
 
 
     }
@@ -25,5 +27,20 @@ public class DataDAOImpl implements DataDAO {
         }else{
             System.out.println("Ошибка, пользовалея с такой книгой не найдено!");
         }
+    }
+
+    public DataOnTheIssuanceAndAcceptanceOfBooks[] getDataArr(String tNumb){
+        List listResult = list.getDataWithCardNumber(tNumb);
+        DataOnTheIssuanceAndAcceptanceOfBooks[] result = listResult.listToArray();
+
+        return result;
+    }
+
+    public DataOnTheIssuanceAndAcceptanceOfBooks getTicketAndCipher(String ticket , String cipher){
+      return  list.find(ticket,cipher);
+    }
+
+    public void close(){
+        data.closeFile();
     }
 }

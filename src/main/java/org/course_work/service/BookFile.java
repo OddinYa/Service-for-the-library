@@ -10,14 +10,16 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 
-public class BookFile implements FileWriter<Book>,FileReader<Tree> {
+public class BookFile implements FileWriter<Book>, FileReader<Tree> {
     java.io.FileWriter fw;
     BufferedWriter bufferedWriter;
 
-     private  String fileName = "BookRepo.txt";
-     private  File file;
+    private String fileName = "bookRepo.txt";
+    private File file;
 
-    public BookFile(){
+
+
+    public BookFile() {
         try {
             file = new File(fileName);
 
@@ -25,10 +27,10 @@ public class BookFile implements FileWriter<Book>,FileReader<Tree> {
                 file.createNewFile();
             }
 
-            fw = new java.io.FileWriter(file,true);
+            fw = new java.io.FileWriter(file, true);
             bufferedWriter = new BufferedWriter(fw);
 
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -44,26 +46,32 @@ public class BookFile implements FileWriter<Book>,FileReader<Tree> {
 
     @Override
     public Tree readerFile() {
+        Tree result = new Tree();
         try (BufferedReader br = new BufferedReader(new java.io.FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
 
                 String[] values = line.replaceAll("[{} ]", "").split(",");
+                if (values.length > 1) {
+                    Book book = new Book(
+                            Integer.parseInt(parseValue("topicNumber", values)),
+                            parseValue("author", values),
+                            parseValue("title", values),
+                            parseValue("publisher", values),
+                            Integer.parseInt(parseValue("yearOfPublication", values)),
+                            Integer.parseInt(parseValue("totalCopies", values)),
+                            Integer.parseInt(parseValue("availableCopies", values))
+                    );
+                    result.add(book);
 
-                Book book = new Book(
-                        Integer.parseInt(parseValue("topicNumber",values)),
-                        parseValue("author",values),
-                        parseValue("title",values),
-                        parseValue("publisher",values),
-                        Integer.parseInt(parseValue("yearOfPublication", values)),
-                        Integer.parseInt(parseValue("totalCopies", values)),
-                        Integer.parseInt(parseValue("availableCopies", values))
-                );
+                } else {
 
-                System.out.println(book); // delete
+                }
+
 
             }
-        } catch (IOException | BookTopicNumberException e ) {
+            return result;
+        } catch (IOException | BookTopicNumberException e) {
             e.printStackTrace();
         }
         return null;
@@ -72,12 +80,16 @@ public class BookFile implements FileWriter<Book>,FileReader<Tree> {
     @Override
     public void writeToFile(Book data) {
         try {
+            if (file.length() != 0) {
+                bufferedWriter.newLine();
+            }
             bufferedWriter.write(data.toString());
             bufferedWriter.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public void closeFile() {
         try {
             if (bufferedWriter != null) {

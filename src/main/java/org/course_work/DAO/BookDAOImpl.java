@@ -1,12 +1,23 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.Book;
+import org.course_work.service.BookFile;
+import org.course_work.service.MergeSort;
 import org.course_work.struct.tree.Tree;
 
+import java.util.Comparator;
+
 public class BookDAOImpl implements BookDAO{
-    Tree tree;
+    private Tree tree;
+
+    MergeSort<Book> bookMergeSort;
+    private BookFile fileBook;
+
     public BookDAOImpl(){
-        tree = new Tree();
+
+        fileBook = new BookFile();
+        tree = fileBook.readerFile();
+
     }
 
     @Override
@@ -25,8 +36,13 @@ public class BookDAOImpl implements BookDAO{
     }
 
     @Override
-    public Tree getAllBooks() {
-        return null;
+    public Book[] getAllBooks() {
+        bookMergeSort = new MergeSort<>();
+
+        Book[] books = tree.traversal();
+        Book[] sorted = bookMergeSort.sort(books);
+
+        return sorted;
     }
 
     @Override
@@ -42,5 +58,9 @@ public class BookDAOImpl implements BookDAO{
     @Override
     public Book findBooksByAuthorOrTitle(String searchQuery) {
         return null;
+    }
+
+    public void close(){
+        fileBook.closeFile();
     }
 }

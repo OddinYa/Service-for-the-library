@@ -2,13 +2,15 @@ package org.course_work.entity;
 
 
 import org.course_work.exception.AccessRightsException;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class User {
-   private final String numberOfTheTicket;
+public class User implements Comparable<User>,Entity {
+
+    private  String numberOfTheTicket;
    private char accessRights;
    private static int lastAssignedNumber = 0;
    private  int numbOfRegistration;
@@ -122,6 +124,10 @@ public class User {
         this.placeOfWorkOrStudy = placeOfWorkOrStudy;
     }
 
+    @Deprecated
+    public void setNumberOfTheTicket(String numberOfTheTicket) {
+        this.numberOfTheTicket = numberOfTheTicket;
+    }
     @Override
     public String toString() {
         return "User{" +
@@ -157,5 +163,18 @@ public class User {
         result = result * prime + accessRights;
 
         return Math.abs(result);
+    }
+
+
+
+
+    @Override
+    public void getCart(int numb){
+        System.out.println(numb+". Номер билета: "+this.getNumberOfTheTicket()+",ФИО: "+this.getFullName());
+    }
+
+    @Override
+    public int compareTo(@NotNull User o) {
+        return this.fullName.compareTo(o.fullName);
     }
 }

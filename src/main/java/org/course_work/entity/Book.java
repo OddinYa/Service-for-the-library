@@ -1,10 +1,12 @@
 package org.course_work.entity;
 
 import org.course_work.exception.BookTopicNumberException;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Book {
+public class Book implements Entity, Comparable<Book> {
     private String cipher;
     private int topicNumber;
 
@@ -23,7 +25,7 @@ public class Book {
     public Book(int topicNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
 
 
-        if(checkTopicNumbed(topicNumber)){
+        if (checkTopicNumbed(topicNumber)) {
             this.topicNumber = topicNumber;
 
             this.author = author;
@@ -33,28 +35,29 @@ public class Book {
             this.totalCopies = totalCopies;
             this.availableCopies = availableCopies;
 
-            cipher = createCipher();}
-        else {
+            cipher = createCipher();
+        } else {
             throw new BookTopicNumberException("Ошибка номера темы");
         }
 
 
     }
-    private String createCipher()throws BookTopicNumberException{
+
+    private String createCipher() throws BookTopicNumberException {
 
         StringBuilder stringBuilder = new StringBuilder();
-        String topic = String.format("%03d",topicNumber);
+        String topic = String.format("%03d", topicNumber);
         stringBuilder.append(topic);
         stringBuilder.append(".");
         lastAssignedNumber++;
         this.serialNumber = lastAssignedNumber;
-        String serial = String.format("%03d",serialNumber);
+        String serial = String.format("%03d", serialNumber);
         stringBuilder.append(serial);
 
         return stringBuilder.toString();
     }
 
-    private boolean checkTopicNumbed(int topicNumber){
+    private boolean checkTopicNumbed(int topicNumber) {
         return topicNumber < 999 && topicNumber > 0;
     }
 
@@ -158,4 +161,17 @@ public class Book {
     public int hashCode() {
         return Objects.hash(author, title, publisher, yearOfPublication, totalCopies, availableCopies);
     }
+
+    @Override
+    public void getCart(int numb) {
+
+    }
+    @Override
+    public int compareTo(@NotNull Book o) {
+        if (this == o) { // Проверка на равенство ссылок
+            return 0;
+        }
+        return this.title.compareTo(o.getTitle()); // Сравнение по названию книги
+    }
+
 }

@@ -12,7 +12,7 @@ public class UserDAOImpl implements UserDAO{
     public UserDAOImpl(){
         userFile = new UserFile();
         map = userFile.readerFile();
-        closeStream();
+
 
     }
     public MyMap getMap(){
