@@ -135,8 +135,7 @@ public class ConsoleDisplay extends Thread {
                             data.setReturnDate();
 
                             System.out.println("Книга возвращена.Спасибо!");
-                        }
-                        else {
+                        } else {
                             System.out.println("Данных по этой книги нет!");
                         }
                     }
@@ -147,7 +146,7 @@ public class ConsoleDisplay extends Thread {
                     int countBa = 1;
                     for (Book b : allBook) {
                         if (b.getAvailableCopies() > 0) {
-                            b.getCart(countBa);  // TODO
+                            System.out.println(bookController.getInfoBook(b, countBa));
                             countBa++;
                         }
                     }
@@ -177,7 +176,7 @@ public class ConsoleDisplay extends Thread {
                     } else {
                         int countB = 1;
                         for (Book b : books) {
-                           System.out.println(bookController.getInfo(b));
+                            System.out.println(bookController.getInfoBook(b, countB));
                             countB++;
                         }
                     }
@@ -189,7 +188,7 @@ public class ConsoleDisplay extends Thread {
                     if (reqBook == null) {
                         System.out.println("Книги с таким шрифтом не найдена!");
                     }
-                    System.out.println(bookController.getInfo(reqBook));
+                    System.out.println(bookController.getInfoBook(reqBook, 1));
                     break;
                 case "6":
                     flag = true;
@@ -211,20 +210,21 @@ public class ConsoleDisplay extends Thread {
                 System.out.println("Меню: ");
                 System.out.println("1. Список читателей \n" +
                         "2. Добавить книгу \n" +
-                        "3. Удалить книгу \n" +
-                        "4. Снять с обслуживание читателя\n" +
-                        "5. Поиск читателя по номеру билета\n" +
-                        "6. Поиск читателя по ФИО\n" +
-                        "7. Выход.");
+                        "3. Изминить книгу\n" +
+                        "4. Удалить книгу \n" +
+                        "5. Снять с обслуживание читателя\n" +
+                        "6. Поиск читателя по номеру билета\n" +
+                        "7. Поиск читателя по ФИО\n" +
+                        "8. Выход.");
 
                 String code = reader.readLine();
                 switch (code) {
                     case "1":
                         System.out.println("Список читателей :");
-                        User[] arrUsers = userController.getAllUsers();
+                        User[] arrUsers = userController.getSortAllUsers();
                         int count = 1;
                         for (User u : arrUsers) {
-                          System.out.println(userController.getInfoShort(u,count));
+                            System.out.println(userController.getInfoShort(u, count));
                             count++;
                         }
                         break;
@@ -262,20 +262,22 @@ public class ConsoleDisplay extends Thread {
                         System.out.println("Книга зарегистрирована!");
                         break;
                     case "3":
+                        break;
+                    case "4":
                         System.out.println("Удалить книгу");
                         System.out.println("Напишите шифр книги:");
                         String cipher = reader.readLine();
-                        bookController.remove(cipher);
+                        bookController.removeBook(cipher);
                         System.out.println("Книга удалина!");
                         break;
-                    case "4":
+                    case "5":
                         System.out.println("Снять с обслуживание читателя");
                         System.out.println("Напишите номер билета:");
                         String tNumberForRemove = reader.readLine();
-                        userController.remove(tNumberForRemove);
+                        userController.removeUser(tNumberForRemove);
                         break;
 
-                    case "5":
+                    case "6":
                         System.out.println("Поиск читателя по номеру билета");
                         System.out.println("Напишите номер билета: ");
                         String tNumberForFind = reader.readLine();
@@ -286,17 +288,17 @@ public class ConsoleDisplay extends Thread {
                             System.out.println("Пользователь на найден!");
                         }
                         break;
-                    case "6":
+                    case "7":
                         System.out.println("Поиск читателя по ФИО");
                         System.out.println("Введите ФИО читателя: ");
                         String name = reader.readLine();
                         User[] arrUser = userController.getListFindFullName(name);
                         for (int i = 0; i < arrUser.length; i++) {
-                           userController.getInfo(arrUser[i],dataController,bookController);
+                            userController.getInfo(arrUser[i], dataController, bookController);
                         }
                         System.out.println("Поиск завершен!");
                         break;
-                    case "7":
+                    case "8":
                         flag = true;
                         break;
                     default: {

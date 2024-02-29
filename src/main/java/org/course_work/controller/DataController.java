@@ -21,6 +21,9 @@ public class DataController {
    public void registrationData(String ticket, String cipher){
 
    }
+   public void removeData(String cipher){
+        dataDAO.remove(cipher);
+    }
 
    public void closeWR(){
         dataDAO.close();

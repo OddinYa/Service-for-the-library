@@ -10,4 +10,5 @@ public interface UserDAO {
     void clearUserData(); // очистка данных о читателях
     User findUserByLibraryCardNumber(String libraryCardNumber); // поиск читателя по номеру читательского билета
     MyMap findUserByFullName(String fullName); // поиск читателя по ФИО
+    void remove(String ticket);
 }

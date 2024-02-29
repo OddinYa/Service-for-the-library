@@ -51,6 +51,13 @@ public class UserDAOImpl implements UserDAO{
         return map.findByName(fullName);
     }
 
+    @Override
+    public void remove(String ticket) {
+
+    }
+
+
+
     public void closeStream(){
         userFile.closeFile();
     }

@@ -29,6 +29,16 @@ public class DataDAOImpl implements DataDAO {
         }
     }
 
+    @Override
+    public void removeCipher(String cipher) {
+
+    }
+
+    @Override
+    public void removeTicket(String ticket) {
+
+    }
+
     public DataOnTheIssuanceAndAcceptanceOfBooks[] getDataArr(String tNumb){
         List listResult = list.getDataWithCardNumber(tNumb);
         DataOnTheIssuanceAndAcceptanceOfBooks[] result = listResult.listToArray();

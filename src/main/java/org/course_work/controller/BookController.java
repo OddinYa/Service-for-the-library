@@ -26,4 +26,10 @@ public class BookController {
     public void registrationBook(Book book) {
 
     }
+    public String getInfoBook(Book book, int index){
+        return index + ". Шифр книги :" + book.getCipher() + ",Название :" + book.getTitle() + ",Автор: " + book.getAuthor();
+    }
+    public void removeBook(String cipher){
+        bookDAO.removeBook(cipher);
+    }
 }

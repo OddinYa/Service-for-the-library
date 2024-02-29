@@ -6,15 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="+dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/DataController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/MergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/MergeSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -252,7 +250,8 @@
       <workItem from="1708964872671" duration="4101000" />
       <workItem from="1709060385695" duration="2326000" />
       <workItem from="1709135020493" duration="10639000" />
-      <workItem from="1709149943355" duration="4868000" />
+      <workItem from="1709149943355" duration="5434000" />
+      <workItem from="1709228192697" duration="2762000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -359,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709146049326</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="+dev">
+      <created>1709155116468</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1709155116468</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

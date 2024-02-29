@@ -66,4 +66,8 @@ public class UserController {
 
         return stringBuilder.toString();
     }
+
+    public void removeUser(String ticket){
+        userDAO.remove(ticket);
+    }
 }
