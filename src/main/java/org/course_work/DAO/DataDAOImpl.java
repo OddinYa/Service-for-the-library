@@ -9,6 +9,7 @@ public class DataDAOImpl implements DataDAO {
     private List list;
     private DataIABFile data;
     public DataDAOImpl(){
+        data = new DataIABFile();
         list = data.readerFile();
 
 

@@ -168,10 +168,10 @@ public class Book implements Entity, Comparable<Book> {
     }
     @Override
     public int compareTo(@NotNull Book o) {
-        if (this == o) { // Проверка на равенство ссылок
+        if (this == o) {
             return 0;
         }
-        return this.title.compareTo(o.getTitle()); // Сравнение по названию книги
+        return this.title.compareTo(o.getTitle());
     }
 
 }

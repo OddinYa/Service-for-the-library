@@ -1,19 +1,21 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.Book;
+import org.course_work.service.BMSearch;
 import org.course_work.service.BookFile;
 import org.course_work.service.MergeSort;
 import org.course_work.struct.tree.Tree;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
-public class BookDAOImpl implements BookDAO{
+public class BookDAOImpl implements BookDAO {
     private Tree tree;
 
     MergeSort<Book> bookMergeSort;
     private BookFile fileBook;
 
-    public BookDAOImpl(){
+    public BookDAOImpl() {
 
         fileBook = new BookFile();
         tree = fileBook.readerFile();
@@ -32,7 +34,7 @@ public class BookDAOImpl implements BookDAO{
 
     @Override
     public void removeBook(String cipher) {
-       // tree.delete(findBookByCipher(cipher));
+        // tree.delete(findBookByCipher(cipher));
     }
 
     @Override
@@ -56,11 +58,23 @@ public class BookDAOImpl implements BookDAO{
     }
 
     @Override
-    public Book findBooksByAuthorOrTitle(String searchQuery) {
-        return null;
+    public Book[] findBooksByAuthorOrTitle(String searchQuery) {
+        Book[] temp = tree.traversal();
+        BMSearch bmSearch = new BMSearch();
+        Book[] result = new Book[temp.length];
+        int count = 0;
+        for (Book book : temp) {
+            String text = book.getAuthor() + book.getTitle();
+            if (bmSearch.job(text, searchQuery)) {
+                result[count] = book;
+                count++;
+            }
+        }
+        return result;
     }
 
-    public void close(){
+    public void close() {
         fileBook.closeFile();
     }
+
 }

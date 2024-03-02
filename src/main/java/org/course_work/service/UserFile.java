@@ -72,7 +72,7 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
                 bufferedWriter.newLine();
             }
             bufferedWriter.write(data.toString());
-            bufferedWriter.newLine();
+            // bufferedWriter.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }

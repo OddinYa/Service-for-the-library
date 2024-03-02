@@ -100,6 +100,7 @@ public class ConsoleDisplay extends Thread {
                     }
                 }
             } catch (Exception e) {
+             System.out.println(e);
                 System.out.println("Ошибка ввода!");
             }
 
@@ -283,7 +284,7 @@ public class ConsoleDisplay extends Thread {
                         String tNumberForFind = reader.readLine();
                         User user = userController.find(tNumberForFind);
                         if (user != null) {
-                            userController.getInfo(user, dataController, bookController);
+                           System.out.println(userController.getInfo(user, dataController, bookController));
                         } else {
                             System.out.println("Пользователь на найден!");
                         }

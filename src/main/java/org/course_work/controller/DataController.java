@@ -22,7 +22,7 @@ public class DataController {
 
    }
    public void removeData(String cipher){
-        dataDAO.remove(cipher);
+        dataDAO.removeCipher(cipher);
     }
 
    public void closeWR(){

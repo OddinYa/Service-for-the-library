@@ -24,6 +24,20 @@ public class DataOnTheIssuanceAndAcceptanceOfBooks implements Entity {
 
    }
 
+   public static DataOnTheIssuanceAndAcceptanceOfBooks buildData(String libraryCardNumber,String cipher, String dateOfIssue,String returnDate ){
+
+      DataOnTheIssuanceAndAcceptanceOfBooks data = new DataOnTheIssuanceAndAcceptanceOfBooks(libraryCardNumber,cipher);
+
+      if(returnDate.equals("")){
+         data.flagActive = true;
+      }else {
+         data.returnDate = returnDate;
+      }
+      data.dateOfIssue = dateOfIssue;
+
+      return data;
+   }
+
    public String getLibraryCardNumber() {
       return libraryCardNumber;
    }

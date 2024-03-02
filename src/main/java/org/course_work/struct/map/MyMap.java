@@ -54,12 +54,18 @@ public class MyMap extends MyStruct {
     }
 
     public User get(String key) {
+        User user = null;
         if (!Objects.equals(key, "")) {
 
             int index = hash(key);
-            return table[index].getUser();
+            if (!table[index].getKey().equals(key)) {
+                user = find(key, index);
+
+            } else {
+                user = table[index].getUser();
+            }
         }
-        return null;
+        return user;
     }
 
     public void remove(String key) {
@@ -82,7 +88,9 @@ public class MyMap extends MyStruct {
     }
 
     public MyMap findByName(String fullName) {
+
         MyMap result = new MyMap();
+
         for (Bucket b : this.table) {
             if (b != null && b.getUser() != null) {
                 if (search.job(b.getUser().getFullName(), fullName)) {
@@ -127,6 +135,47 @@ public class MyMap extends MyStruct {
                 System.out.println(b.toString());
             }
         }
+    }
+
+    public User[] toArray() {
+        User[] result = new User[this.capacity];
+        int count = 0;
+
+        for (Bucket table : table) {
+            if (table != null) {
+                result[count] = table.getUser();
+                count++;
+            }
+        }
+        return result;
+    }
+
+    private User find(String key, int index) {
+        boolean flag = false;
+        boolean flagLength = false;
+        User user = null;
+        while (!flag) {
+
+            int nextIndex = index + step;
+
+            if (nextIndex >= table.length) {
+                nextIndex = nextIndex % table.length;
+                if (flagLength == true) {
+                    break;
+                }
+                flagLength = true;
+
+            }
+
+            if (table[nextIndex].getKey().equals(key)) {
+                flag = true;
+                user = table[nextIndex].getUser();
+            } else {
+                index = nextIndex;
+                step = (int) Math.pow(step, 2);
+            }
+        }
+        return user;
     }
 
 }

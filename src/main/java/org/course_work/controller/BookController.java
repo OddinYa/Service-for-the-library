@@ -2,6 +2,7 @@ package org.course_work.controller;
 
 import org.course_work.DAO.BookDAOImpl;
 import org.course_work.entity.Book;
+import org.course_work.service.MergeSort;
 
 public class BookController {
 
@@ -31,5 +32,12 @@ public class BookController {
     }
     public void removeBook(String cipher){
         bookDAO.removeBook(cipher);
+    }
+
+    public Book[] findSortListBooks(String authorOrTitle){
+        MergeSort<Book> sortedArr = new MergeSort<>();
+        Book[] temp = bookDAO.findBooksByAuthorOrTitle(authorOrTitle);
+
+        return sortedArr.sort(temp);
     }
 }

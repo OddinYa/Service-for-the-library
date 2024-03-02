@@ -6,13 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="+dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/DataController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/MergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/MergeSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/UserFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/UserFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/MyMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/struct/map/MyMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -251,7 +256,8 @@
       <workItem from="1709060385695" duration="2326000" />
       <workItem from="1709135020493" duration="10639000" />
       <workItem from="1709149943355" duration="5434000" />
-      <workItem from="1709228192697" duration="2762000" />
+      <workItem from="1709228192697" duration="2990000" />
+      <workItem from="1709385208959" duration="9617000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -365,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709155116468</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="+dev">
+      <created>1709231000351</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1709231000351</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +389,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -407,6 +432,26 @@
           <line>73</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/service/MergeSort.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -415,5 +460,11 @@
         <PinnedItemInfo parentTag="org.course_work.struct.tree.Tree" memberName="root" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="userDAO.map.table" />
+        <watch expression="this" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
