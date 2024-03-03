@@ -1,8 +1,11 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
+import org.course_work.entity.User;
 import org.course_work.service.DataIABFile;
 import org.course_work.struct.linkedList.List;
+
+import java.io.IOException;
 
 public class DataDAOImpl implements DataDAO {
 
@@ -53,6 +56,11 @@ public class DataDAOImpl implements DataDAO {
 
     public void add(String ticket, String cipher){
         list.add(new DataOnTheIssuanceAndAcceptanceOfBooks(ticket,cipher));
+    }
+    public void loadData() throws IOException {
+        DataOnTheIssuanceAndAcceptanceOfBooks[] arr = list.listToArray();
+        data.load(arr);
+
     }
 
 

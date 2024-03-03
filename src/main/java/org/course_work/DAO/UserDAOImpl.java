@@ -24,7 +24,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public void registerNewUser(User user) {
         map.put(user.getNumberOfTheTicket(),user);
-        userFile.writeToFile(user);
+       // userFile.writeToFile(user);
 
     }
 
@@ -58,10 +58,9 @@ public class UserDAOImpl implements UserDAO{
 
     }
 
-    public void load() throws IOException {
+    public void loadUser() throws IOException {
         User[] arr = map.toArray();
         userFile.load(arr);
-
     }
 
 

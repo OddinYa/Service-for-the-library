@@ -4,6 +4,8 @@ import org.course_work.DAO.DataDAOImpl;
 import org.course_work.entity.Book;
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
 
+import java.io.IOException;
+
 public class DataController {
     DataDAOImpl dataDAO;
 
@@ -27,5 +29,9 @@ public class DataController {
 
    public void closeWR(){
         dataDAO.close();
+   }
+
+   public void loadData() throws IOException {
+        dataDAO.loadData();
    }
 }

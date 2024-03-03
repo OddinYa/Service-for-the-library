@@ -1,19 +1,21 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.Book;
+import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
 import org.course_work.exception.BookTopicNumberException;
 import org.course_work.service.BMSearch;
 import org.course_work.service.BookFile;
 import org.course_work.service.MergeSort;
 import org.course_work.struct.tree.Tree;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class BookDAOImpl implements BookDAO {
     private Tree tree;
 
-    MergeSort<Book> bookMergeSort;
+    private MergeSort<Book> bookMergeSort;
     private BookFile fileBook;
 
     public BookDAOImpl() {
@@ -27,7 +29,7 @@ public class BookDAOImpl implements BookDAO {
     public void addNewBook(Book book) {
         try {
             tree.add(book);
-            fileBook.writeToFile(book);
+            //fileBook.writeToFile(book);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -102,6 +104,10 @@ public class BookDAOImpl implements BookDAO {
         stringBuilder.append(serial);
 
         return stringBuilder.toString();
+    }
+    public void loadBooks() throws IOException {
+       Book[] arr = tree.traversal();
+        fileBook.load(arr);
     }
 
 }

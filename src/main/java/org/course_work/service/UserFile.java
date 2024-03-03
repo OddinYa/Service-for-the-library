@@ -45,15 +45,10 @@ public class UserFile implements FileWriter<User>, FileReader<MyMap>, FileLoader
                 String[] values = line.split(",");
                 if (values.length > 1) {
 
-                    User user = new User(
-                            parseAccessRights(values[1]),
-                            parseValue(" fullName", values),
-                            Integer.parseInt(parseValue(" yearOfBirth", values)),
-                            parseValue(" address", values),
-                            parseValue(" placeOfWorkOrStudy", values)
-                    );
-
-                    map.put(user.getNumberOfTheTicket(), user);
+                    User user = extractDataFromLine(line);
+                    if (user != null) {
+                        map.put(user.getNumberOfTheTicket(), user);
+                    }
                 } else {
 
                 }
@@ -64,17 +59,41 @@ public class UserFile implements FileWriter<User>, FileReader<MyMap>, FileLoader
         }
         return map;
     }
-    private char parseAccessRights(String value) {
-        return value.charAt(value.indexOf('=') + 1);
+
+    private User extractDataFromLine(String line) throws AccessRightsException {
+        User user = null;
+        String numberOfTheTicket = extractValue(line, "numberOfTheTicket='", "'");
+        char accessRights = extractAccessRights(line);
+        int numbOfRegistration = Integer.parseInt(extractValue(line, "numbOfRegistration=", ","));
+        String fullName = extractValue(line, "fullName='", "'");
+        int yearOfBirth = Integer.parseInt(extractValue(line, "yearOfBirth=", ","));
+        String address = extractValue(line, "address='", "'");
+        String placeOfWorkOrStudy = extractValue(line, "placeOfWorkOrStudy='", "'");
+
+        if (numberOfTheTicket != null && fullName != null) {
+            user = new User(numberOfTheTicket, accessRights, numbOfRegistration, fullName, yearOfBirth, address, placeOfWorkOrStudy);
+        }
+
+        return user;
     }
 
-    private String parseValue(String key, String[] values) {
-        for (String value : values) {
-            if (value.startsWith(key)) {
-                return value.substring(value.indexOf('=') + 1,value.length()-1);
-            }
+    private String extractValue(String line, String startDelimiter, String endDelimiter) {
+
+        int startIndex = line.indexOf(startDelimiter);
+        int endIndex = line.indexOf(endDelimiter, startIndex + startDelimiter.length());
+
+        if (startIndex != -1 && endIndex != -1) {
+            return line.substring(startIndex + startDelimiter.length(), endIndex);
         }
         return null;
+    }
+
+    private char extractAccessRights(String line) {
+        int index = line.indexOf("accessRights=");
+        if (index != -1) {
+            return line.charAt(index + 13);
+        }
+        return ' ';
     }
 
     @Override
@@ -103,6 +122,7 @@ public class UserFile implements FileWriter<User>, FileReader<MyMap>, FileLoader
         }
         writer.close();
     }
+
     public void closeFile() {
         try {
             if (bufferedWriter != null) {

@@ -4,6 +4,8 @@ import org.course_work.DAO.BookDAOImpl;
 import org.course_work.entity.Book;
 import org.course_work.service.MergeSort;
 
+import java.io.IOException;
+
 public class BookController {
 
     BookDAOImpl bookDAO;
@@ -42,5 +44,8 @@ public class BookController {
     }
     public int getSerialNumber(int topicNumber){
         return bookDAO.getSerialNumber(topicNumber);
+    }
+    public void loadBook() throws IOException {
+        bookDAO.loadBooks();
     }
 }

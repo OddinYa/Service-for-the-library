@@ -339,11 +339,9 @@ public class ConsoleDisplay extends Thread {
     }
 
     private void close() throws IOException {
-        userController.load();
 
-
-      //  userController.closeWR();
-        dataController.closeWR();
-        bookController.closeWR();
+        userController.loadUser();
+        bookController.loadBook();
+        dataController.loadData();
     }
 }

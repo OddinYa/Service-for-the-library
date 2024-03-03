@@ -31,12 +31,10 @@ public class UserController {
         return userDAO.findUserByLibraryCardNumber(code);
     }
 
-    public void closeWR() {
-        userDAO.closeStream();
-    }
 
-    public void load() throws IOException {
-        userDAO.load();
+
+    public void loadUser() throws IOException {
+        userDAO.loadUser();
     }
 
     public String getInfo(User user, DataController data, BookController bookController) {

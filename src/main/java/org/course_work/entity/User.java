@@ -8,51 +8,67 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class User implements Comparable<User>,Entity {
+public class User implements Comparable<User>, Entity {
 
-    private  String numberOfTheTicket;
-   private char accessRights;
-   private static int lastAssignedNumber = 0;
-   private  int numbOfRegistration;
-   private String fullName;
+    private String numberOfTheTicket;
+    private char accessRights;
+    private static int lastAssignedNumber = 0;
+    private int numbOfRegistration;
+    private String fullName;
 
-   private int yearOfBirth;
+    private int yearOfBirth;
 
-   private String address;
+    private String address;
 
-   private String placeOfWorkOrStudy;
+    private String placeOfWorkOrStudy;
 
     public User(char accessRights, String fullName,
                 int yearOfBirth, String address, String placeOfWorkOrStudy) throws AccessRightsException {
 
-       if(checkAccessRights(accessRights)) {
+        if (checkAccessRights(accessRights)) {
 
-           this.accessRights = accessRights;
-           this.fullName = fullName;
-           this.yearOfBirth = yearOfBirth;
-           this.address = address;
-           this.placeOfWorkOrStudy = placeOfWorkOrStudy;
-           this.numberOfTheTicket = createNumber(accessRights);
+            this.accessRights = accessRights;
+            this.fullName = fullName;
+            this.yearOfBirth = yearOfBirth;
+            this.address = address;
+            this.placeOfWorkOrStudy = placeOfWorkOrStudy;
+            this.numberOfTheTicket = createNumber(accessRights);
 
-       }
-       else
-           throw new AccessRightsException("Ошибка права доступа!");
+        } else
+            throw new AccessRightsException("Ошибка права доступа!");
     }
 
-    private boolean checkAccessRights(Character c){
+    public User(String numberOfTheTicket, char accessRights, int numbOfRegistration, String fullName,
+                int yearOfBirth, String address, String placeOfWorkOrStudy) throws AccessRightsException {
+
+        if (checkAccessRights(accessRights)) {
+            this.numberOfTheTicket = numberOfTheTicket;
+            this.accessRights = accessRights;
+            this.numbOfRegistration = numbOfRegistration;
+            this.fullName = fullName;
+            this.yearOfBirth = yearOfBirth;
+            this.address = address;
+            this.placeOfWorkOrStudy = placeOfWorkOrStudy;
+
+        } else {
+            throw new AccessRightsException("Ошибка права доступа!");
+        }
+    }
+
+    private boolean checkAccessRights(Character c) {
         return switch (c) {
             case 'А', 'Ч', 'В' -> true;
             default -> false;
         };
     }
 
-    private String createNumber(char accessRights){
+    private String createNumber(char accessRights) {
 
         StringBuilder stringBuilder = new StringBuilder(accessRights);
         stringBuilder.append(accessRights);
         lastAssignedNumber++;
         this.numbOfRegistration = lastAssignedNumber;
-        String string = String.format("%04d",numbOfRegistration);
+        String string = String.format("%04d", numbOfRegistration);
 
         stringBuilder.append(string);
 
@@ -63,7 +79,7 @@ public class User implements Comparable<User>,Entity {
         return stringBuilder.toString();
     }
 
-    private int toGetYear(){
+    private int toGetYear() {
 
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
@@ -79,13 +95,12 @@ public class User implements Comparable<User>,Entity {
     }
 
 
-
     public char getAccessRights() {
         return accessRights;
     }
 
     public void setAccessRights(char accessRights) {
-       this.accessRights = accessRights;
+        this.accessRights = accessRights;
     }
 
     public Integer getNumbOfRegistration() {
@@ -128,6 +143,7 @@ public class User implements Comparable<User>,Entity {
     public void setNumberOfTheTicket(String numberOfTheTicket) {
         this.numberOfTheTicket = numberOfTheTicket;
     }
+
     @Override
     public String toString() {
         return "User{" +
@@ -137,7 +153,7 @@ public class User implements Comparable<User>,Entity {
                 ", fullName='" + fullName + '\'' +
                 ", yearOfBirth=" + yearOfBirth +
                 ", address='" + address + '\'' +
-                ", placeOfWorkOrStudy='" + placeOfWorkOrStudy + '\'';
+                ", placeOfWorkOrStudy='" + placeOfWorkOrStudy + '\''+'}';
     }
 
     @Override
@@ -165,11 +181,9 @@ public class User implements Comparable<User>,Entity {
     }
 
 
-
-
     @Override
-    public void getCart(int numb){
-        System.out.println(numb+". Номер билета: "+this.getNumberOfTheTicket()+",ФИО: "+this.getFullName());
+    public void getCart(int numb) {
+        System.out.println(numb + ". Номер билета: " + this.getNumberOfTheTicket() + ",ФИО: " + this.getFullName());
     }
 
     @Override

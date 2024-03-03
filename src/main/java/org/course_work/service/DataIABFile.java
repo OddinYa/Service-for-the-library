@@ -8,7 +8,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 
-public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfBooks>, FileReader<List> {
+public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfBooks>, FileReader<List>, FileLoader<DataOnTheIssuanceAndAcceptanceOfBooks> {
     private java.io.FileWriter fw;
     private BufferedWriter bufferedWriter;
     private List list;
@@ -45,9 +45,9 @@ public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfB
 
                 if (values.length == 2) {
                     DataOnTheIssuanceAndAcceptanceOfBooks data = extractDataFromLine(line);
-                   if(data != null) {
-                       list.add(data);
-                   }
+                    if (data != null) {
+                        list.add(data);
+                    }
                 }
             }
         } catch (IOException e) {
@@ -66,7 +66,7 @@ public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfB
         String returnDate = extractValue(line, " returnDate='", "'");
 
         if (libraryCardNumber != null && cipher != null && dateOfIssue != null) {
-          data = DataOnTheIssuanceAndAcceptanceOfBooks.buildData(libraryCardNumber, cipher, dateOfIssue, returnDate);
+            data = DataOnTheIssuanceAndAcceptanceOfBooks.buildData(libraryCardNumber, cipher, dateOfIssue, returnDate);
         }
 
         return data;
@@ -91,7 +91,6 @@ public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfB
                 bufferedWriter.newLine();
             }
             bufferedWriter.write(data.toString());
-           // bufferedWriter.newLine();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,4 +107,17 @@ public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfB
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void load(DataOnTheIssuanceAndAcceptanceOfBooks[] arr) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new java.io.FileWriter(fileName));
+
+        for (DataOnTheIssuanceAndAcceptanceOfBooks d : arr) {
+
+            writer.write(d.toString());
+            writer.newLine();
+        }
+        writer.close();
+    }
 }
+
