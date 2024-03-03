@@ -146,6 +146,9 @@ public class MyMap extends MyStruct {
                 result[count] = table.getUser();
                 count++;
             }
+            if(count==capacity){
+                break;
+            }
         }
         return result;
     }

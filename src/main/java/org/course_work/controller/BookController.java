@@ -25,7 +25,7 @@ public class BookController {
     }
 
     public void registrationBook(Book book) {
-
+        bookDAO.addNewBook(book);
     }
     public String getInfoBook(Book book, int index){
         return index + ". Шифр книги :" + book.getCipher() + ",Название :" + book.getTitle() + ",Автор: " + book.getAuthor();
@@ -39,5 +39,8 @@ public class BookController {
         Book[] temp = bookDAO.findBooksByAuthorOrTitle(authorOrTitle);
 
         return sortedArr.sort(temp);
+    }
+    public int getSerialNumber(int topicNumber){
+        return bookDAO.getSerialNumber(topicNumber);
     }
 }

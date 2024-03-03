@@ -137,8 +137,7 @@ public class User implements Comparable<User>,Entity {
                 ", fullName='" + fullName + '\'' +
                 ", yearOfBirth=" + yearOfBirth +
                 ", address='" + address + '\'' +
-                ", placeOfWorkOrStudy='" + placeOfWorkOrStudy + '\'' +
-                '}';
+                ", placeOfWorkOrStudy='" + placeOfWorkOrStudy + '\'';
     }
 
     @Override

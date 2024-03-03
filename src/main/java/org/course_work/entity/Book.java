@@ -1,28 +1,48 @@
 package org.course_work.entity;
 
+import org.course_work.controller.BookController;
 import org.course_work.exception.BookTopicNumberException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Book implements Entity, Comparable<Book> {
-    private String cipher;
-    private int topicNumber;
+public class Book implements Entity, Comparable<org.course_work.entity.Book> {
+        private String cipher;
+        private int topicNumber;
 
-    private static int lastAssignedNumber = 0;
-    private int serialNumber;
+        private static int lastAssignedNumber = 0;
+        private int serialNumber;
 
-    private String author;
+        private String author;
 
+        private String title;
+        private String publisher;
+        private int yearOfPublication;
+        private int totalCopies;
+        private int availableCopies;
 
-    private String title;
-    private String publisher;
-    private int yearOfPublication;
-    private int totalCopies;
-    private int availableCopies;
-
-    public Book(int topicNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
+//    public Book(int topicNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
+//
+//
+//        if (checkTopicNumbed(topicNumber)) {
+//            this.topicNumber = topicNumber;
+//
+//            this.author = author;
+//            this.title = title;
+//            this.publisher = publisher;
+//            this.yearOfPublication = yearOfPublication;
+//            this.totalCopies = totalCopies;
+//            this.availableCopies = availableCopies;
+//
+//            cipher = createCipher(new BookController().findLastTopic());
+//        } else {
+//            throw new BookTopicNumberException("Ошибка номера темы");
+//        }
+//
+//
+//    }
+    public Book(int topicNumber,int serialNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
 
 
         if (checkTopicNumbed(topicNumber)) {
@@ -34,8 +54,8 @@ public class Book implements Entity, Comparable<Book> {
             this.yearOfPublication = yearOfPublication;
             this.totalCopies = totalCopies;
             this.availableCopies = availableCopies;
-
-            cipher = createCipher();
+            this.serialNumber = serialNumber;
+            cipher = createCipher(serialNumber);
         } else {
             throw new BookTopicNumberException("Ошибка номера темы");
         }
@@ -43,14 +63,13 @@ public class Book implements Entity, Comparable<Book> {
 
     }
 
-    private String createCipher() throws BookTopicNumberException {
+    private String createCipher(int serialNumber) throws BookTopicNumberException {
 
         StringBuilder stringBuilder = new StringBuilder();
         String topic = String.format("%03d", topicNumber);
         stringBuilder.append(topic);
         stringBuilder.append(".");
-        lastAssignedNumber++;
-        this.serialNumber = lastAssignedNumber;
+        this.serialNumber = serialNumber;
         String serial = String.format("%03d", serialNumber);
         stringBuilder.append(serial);
 

@@ -134,6 +134,7 @@ public class ConsoleDisplay extends Thread {
                                 getData(user.getNumberOfTheTicket(), book.getCipher());
                         if (data != null) {
                             data.setReturnDate();
+                            book.setAvailableCopies(book.getAvailableCopies()+1);
 
                             System.out.println("Книга возвращена.Спасибо!");
                         } else {
@@ -143,7 +144,7 @@ public class ConsoleDisplay extends Thread {
                     break;
                 case "2":
                     Book[] allBook = bookController.getAllBooks();
-                    System.out.println("Напишите шифр книги которую хотите взять или напишите EXIT");
+                    System.out.println("Список книг: ");
                     int countBa = 1;
                     for (Book b : allBook) {
                         if (b.getAvailableCopies() > 0) {
@@ -151,11 +152,14 @@ public class ConsoleDisplay extends Thread {
                             countBa++;
                         }
                     }
+                    System.out.println("Напишите шифр книги которую хотите взять или напишите EXIT");
                     String codeOfBook = reader.readLine();
                     if (codeOfBook.equals("EXIT")) {
                         break;
                     } else {
                         Book bookToGet = bookController.getBook(codeOfBook);
+
+                        bookToGet.setAvailableCopies(bookToGet.getAvailableCopies()-1);
 
                         if (bookToGet == null) {
                             System.out.println("Ошибка шифра книги!");
@@ -235,6 +239,8 @@ public class ConsoleDisplay extends Thread {
 
                         int topicNumber = Integer.parseInt(reader.readLine());
 
+                        int serialNumber = bookController.getSerialNumber(topicNumber);
+
                         System.out.println("Введите автора:");
                         String author = reader.readLine();
 
@@ -255,12 +261,21 @@ public class ConsoleDisplay extends Thread {
 
                         Book book = null;
                         try {
-                            book = new Book(topicNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
+                            book = new Book(topicNumber,serialNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
                         } catch (BookTopicNumberException e) {
                             System.out.println("Ошибка Ввода Номера темы");
                         }
                         bookController.registrationBook(book);
                         System.out.println("Книга зарегистрирована!");
+
+                        Book[] allBook = bookController.getAllBooks();
+                        int countBa = 1;
+                        for (Book b : allBook) {
+                            if (b.getAvailableCopies() > 0) {
+                                System.out.println(bookController.getInfoBook(b, countBa));
+                                countBa++;
+                            }
+                        }
                         break;
                     case "3":
                         break;
@@ -323,8 +338,11 @@ public class ConsoleDisplay extends Thread {
 
     }
 
-    private void close() {
-        userController.closeWR();
+    private void close() throws IOException {
+        userController.load();
+
+
+      //  userController.closeWR();
         dataController.closeWR();
         bookController.closeWR();
     }

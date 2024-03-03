@@ -60,10 +60,10 @@ public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfB
     private DataOnTheIssuanceAndAcceptanceOfBooks extractDataFromLine(String line) {
         DataOnTheIssuanceAndAcceptanceOfBooks data = null;
 
-        String libraryCardNumber = extractValue(line, "libraryCardNumber='", "'");
-        String cipher = extractValue(line, "cipher='", "'");
-        String dateOfIssue = extractValue(line, "dateOfIssue='", "'");
-        String returnDate = extractValue(line, "returnDate='", "'");
+        String libraryCardNumber = extractValue(line, " ='", "'");
+        String cipher = extractValue(line, " cipher='", "'");
+        String dateOfIssue = extractValue(line, " dateOfIssue='", "'");
+        String returnDate = extractValue(line, " returnDate='", "'");
 
         if (libraryCardNumber != null && cipher != null && dateOfIssue != null) {
           data = DataOnTheIssuanceAndAcceptanceOfBooks.buildData(libraryCardNumber, cipher, dateOfIssue, returnDate);

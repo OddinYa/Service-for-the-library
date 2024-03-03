@@ -4,15 +4,17 @@ import org.course_work.entity.Book;
 import org.course_work.struct.MyStruct;
 
 import java.util.Arrays;
+
 //AVL TREE
 //АВЛ ДЕРЕВО
 public class Tree extends MyStruct {
-
+    private static int nodes;
     private Node root;
 
     void updateHeight(Node n) {
         n.height = 1 + Math.max(height(n.left), height(n.right));
     }
+
     int height(Node n) {
         return n == null ? -1 : n.height;
     }
@@ -21,12 +23,34 @@ public class Tree extends MyStruct {
         return (n == null) ? 0 : height(n.right) - height(n.left);
     }
 
-    public void add(Book book){
+    public void add(Book book) {
         String key = book.getCipher();
-        root = insert(root,key,book);
+        root = insert(root, key, book);
+    }
+
+    public Book get(String key) {
+
+        int hash = hash(key);
+        Node temp = root;
+        Book result = null;
+
+        while (temp != null) {
+
+            if (temp.hash == hash) {
+                result = temp.book;
+                return result;
+            }else if(hash < temp.hash){
+                temp = temp.left;
+            }else if(hash> temp.hash){
+                temp = temp.right;
+            }
+        }
+        System.out.println("Книга с таким шифром не найдена!");
+        return result;
     }
 
     private Node insert(Node root, String key, Book book) {
+        nodes++;
         int hash = hash(key);
         if (root == null) {
             return new Node(null, null, book, key, hash);
@@ -41,7 +65,7 @@ public class Tree extends MyStruct {
     }
 
     public Book[] traversal() {
-        Book[] result = new Book[10];
+        Book[] result = new Book[nodes];
         int[] index = {0};
 
         traversal(root, result, index);
@@ -76,11 +100,11 @@ public class Tree extends MyStruct {
         result = result * Integer.parseInt(key.substring(0, 3)) + prime;
         result = result * Integer.parseInt(key.substring(4));
 
-        return result%999;
+        return result % 999;
 
     }
 
-   private Node rotateRight(Node y) {
+    private Node rotateRight(Node y) {
         Node x = y.left;
         Node z = x.right;
         x.right = y;
@@ -90,7 +114,7 @@ public class Tree extends MyStruct {
         return x;
     }
 
-   private Node rotateLeft(Node y) {
+    private Node rotateLeft(Node y) {
         Node x = y.right;
         Node z = x.left;
         x.left = y;
@@ -99,33 +123,36 @@ public class Tree extends MyStruct {
         updateHeight(x);
         return x;
     }
-   private Node delete(Node node, int hash) {
-       if (node == null) {
-           return node;
-       } else if (node.hash > hash) {
-           node.left = delete(node.left, hash);
-       } else if (node.hash < hash) {
-           node.right = delete(node.right, hash);
-       } else {
-           if (node.left == null || node.right == null) {
-               node = (node.left == null) ? node.right : node.left;
-           } else {
-               Node mostLeftChild = mostLeftChild(node.right);
-               node.key = mostLeftChild.key;
-               node.right = delete(node.right, node.hash);
-           }
-       }
-       if (node != null) {
-           node = rebalance(node);
-       }
-       return node;
-   }
+
+    private Node delete(Node node, int hash) {
+        if (node == null) {
+            return node;
+        } else if (node.hash > hash) {
+            node.left = delete(node.left, hash);
+        } else if (node.hash < hash) {
+            node.right = delete(node.right, hash);
+        } else {
+            if (node.left == null || node.right == null) {
+                node = (node.left == null) ? node.right : node.left;
+            } else {
+                Node mostLeftChild = mostLeftChild(node.right);
+                node.key = mostLeftChild.key;
+                node.right = delete(node.right, node.hash);
+            }
+        }
+        if (node != null) {
+            node = rebalance(node);
+        }
+        return node;
+    }
+
     private Node mostLeftChild(Node node) {
         if (node.left == null) {
             return node;
         }
         return mostLeftChild(node.left);
     }
+
     private Node rebalance(Node z) {
         updateHeight(z);
 

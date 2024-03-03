@@ -4,6 +4,8 @@ import org.course_work.entity.User;
 import org.course_work.service.UserFile;
 import org.course_work.struct.map.MyMap;
 
+import java.io.IOException;
+
 public class UserDAOImpl implements UserDAO{
     private MyMap map;
     private UserFile userFile;
@@ -53,6 +55,12 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void remove(String ticket) {
+
+    }
+
+    public void load() throws IOException {
+        User[] arr = map.toArray();
+        userFile.load(arr);
 
     }
 

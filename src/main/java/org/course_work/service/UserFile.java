@@ -9,7 +9,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 
-public class UserFile implements FileWriter<User>,FileReader<MyMap>{
+public class UserFile implements FileWriter<User>, FileReader<MyMap>, FileLoader<User> {
     java.io.FileWriter fw;
     BufferedWriter bufferedWriter;
 
@@ -17,7 +17,7 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
 
     private File file;
 
-    public UserFile(){
+    public UserFile() {
         try {
             file = new File(fileName);
 
@@ -25,10 +25,10 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
                 file.createNewFile();
             }
 
-            fw = new java.io.FileWriter(file,true);
+            fw = new java.io.FileWriter(file, true);
             bufferedWriter = new BufferedWriter(fw);
 
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -42,19 +42,19 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
 
             while ((line = br.readLine()) != null) {
 
-                String[] values = line.replaceAll("[{} ]", "").split(",");
-                if(values.length > 1){
+                String[] values = line.split(",");
+                if (values.length > 1) {
 
-                User user = new User(
-                        parseAccessRights(values[1]),
-                        parseValue("fullName", values),
-                        Integer.parseInt(parseValue("yearOfBirth", values)),
-                        parseValue("address", values),
-                        parseValue("placeOfWorkOrStudy", values)
-                );
+                    User user = new User(
+                            parseAccessRights(values[1]),
+                            parseValue(" fullName", values),
+                            Integer.parseInt(parseValue(" yearOfBirth", values)),
+                            parseValue(" address", values),
+                            parseValue(" placeOfWorkOrStudy", values)
+                    );
 
-                   map.put(user.getNumberOfTheTicket(),user);}
-                else {
+                    map.put(user.getNumberOfTheTicket(), user);
+                } else {
 
                 }
 
@@ -63,6 +63,18 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
             e.printStackTrace();
         }
         return map;
+    }
+    private char parseAccessRights(String value) {
+        return value.charAt(value.indexOf('=') + 1);
+    }
+
+    private String parseValue(String key, String[] values) {
+        for (String value : values) {
+            if (value.startsWith(key)) {
+                return value.substring(value.indexOf('=') + 1,value.length()-1);
+            }
+        }
+        return null;
     }
 
     @Override
@@ -78,8 +90,19 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
         }
     }
 
+    @Override
+    public void load(User[] arr) throws IOException {
+        bufferedWriter.close();
 
+        BufferedWriter writer = new BufferedWriter(new java.io.FileWriter(fileName));
 
+        for (User u : arr) {
+
+            writer.write(u.toString());
+            writer.newLine();
+        }
+        writer.close();
+    }
     public void closeFile() {
         try {
             if (bufferedWriter != null) {
@@ -88,18 +111,5 @@ public class UserFile implements FileWriter<User>,FileReader<MyMap>{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private char parseAccessRights(String value) {
-        return value.charAt(value.indexOf('=') + 1);
-    }
-
-    private String parseValue(String key, String[] values) {
-        for (String value : values) {
-            if (value.startsWith(key)) {
-                return value.substring(value.indexOf('=') + 1);
-            }
-        }
-        return null;
     }
 }

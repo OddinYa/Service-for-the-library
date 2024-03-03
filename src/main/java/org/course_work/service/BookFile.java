@@ -51,16 +51,17 @@ public class BookFile implements FileWriter<Book>, FileReader<Tree> {
             String line;
             while ((line = br.readLine()) != null) {
 
-                String[] values = line.replaceAll("[{} ]", "").split(",");
+                String[] values = line.replace("}","").split(",");
                 if (values.length > 1) {
                     Book book = new Book(
-                            Integer.parseInt(parseValue("topicNumber", values)),
-                            parseValue("author", values),
-                            parseValue("title", values),
-                            parseValue("publisher", values),
-                            Integer.parseInt(parseValue("yearOfPublication", values)),
-                            Integer.parseInt(parseValue("totalCopies", values)),
-                            Integer.parseInt(parseValue("availableCopies", values))
+                            Integer.parseInt(parseValue(" topicNumber", values)),
+                            Integer.parseInt(parseValue(" serialNumber",values)),
+                            parseValue(" author", values),
+                            parseValue(" title", values),
+                            parseValue(" publisher", values),
+                            Integer.parseInt(parseValue(" yearOfPublication", values)),
+                            Integer.parseInt(parseValue(" totalCopies", values)),
+                            Integer.parseInt(parseValue(" availableCopies", values))
                     );
                     result.add(book);
 
@@ -84,7 +85,7 @@ public class BookFile implements FileWriter<Book>, FileReader<Tree> {
                 bufferedWriter.newLine();
             }
             bufferedWriter.write(data.toString());
-            bufferedWriter.newLine();
+            // bufferedWriter.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }

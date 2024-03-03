@@ -19,7 +19,7 @@ public class DataController {
        return  dataDAO.getTicketAndCipher(ticket,cipher);
    }
    public void registrationData(String ticket, String cipher){
-
+        dataDAO.add(ticket,cipher);
    }
    public void removeData(String cipher){
         dataDAO.removeCipher(cipher);

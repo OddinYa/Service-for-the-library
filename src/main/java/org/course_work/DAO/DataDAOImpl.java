@@ -51,6 +51,11 @@ public class DataDAOImpl implements DataDAO {
       return  list.find(ticket,cipher);
     }
 
+    public void add(String ticket, String cipher){
+        list.add(new DataOnTheIssuanceAndAcceptanceOfBooks(ticket,cipher));
+    }
+
+
     public void close(){
         data.closeFile();
     }

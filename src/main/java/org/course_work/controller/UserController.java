@@ -7,6 +7,8 @@ import org.course_work.entity.User;
 import org.course_work.exception.AccessRightsException;
 import org.course_work.service.MergeSort;
 
+import java.io.IOException;
+
 public class UserController {
 
     private UserDAOImpl userDAO;
@@ -31,6 +33,10 @@ public class UserController {
 
     public void closeWR() {
         userDAO.closeStream();
+    }
+
+    public void load() throws IOException {
+        userDAO.load();
     }
 
     public String getInfo(User user, DataController data, BookController bookController) {
