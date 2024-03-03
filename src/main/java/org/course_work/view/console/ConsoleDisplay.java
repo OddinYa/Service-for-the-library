@@ -100,6 +100,7 @@ public class ConsoleDisplay extends Thread {
                     }
                 }
             } catch (Exception e) {
+             System.out.println(e);
                 System.out.println("Ошибка ввода!");
             }
 
@@ -133,29 +134,32 @@ public class ConsoleDisplay extends Thread {
                                 getData(user.getNumberOfTheTicket(), book.getCipher());
                         if (data != null) {
                             data.setReturnDate();
+                            book.setAvailableCopies(book.getAvailableCopies()+1);
 
                             System.out.println("Книга возвращена.Спасибо!");
-                        }
-                        else {
+                        } else {
                             System.out.println("Данных по этой книги нет!");
                         }
                     }
                     break;
                 case "2":
                     Book[] allBook = bookController.getAllBooks();
-                    System.out.println("Напишите шифр книги которую хотите взять или напишите EXIT");
+                    System.out.println("Список книг: ");
                     int countBa = 1;
                     for (Book b : allBook) {
                         if (b.getAvailableCopies() > 0) {
-                            b.getCart(countBa);  // TODO
+                            System.out.println(bookController.getInfoBook(b, countBa));
                             countBa++;
                         }
                     }
+                    System.out.println("Напишите шифр книги которую хотите взять или напишите EXIT");
                     String codeOfBook = reader.readLine();
                     if (codeOfBook.equals("EXIT")) {
                         break;
                     } else {
                         Book bookToGet = bookController.getBook(codeOfBook);
+
+                        bookToGet.setAvailableCopies(bookToGet.getAvailableCopies()-1);
 
                         if (bookToGet == null) {
                             System.out.println("Ошибка шифра книги!");
@@ -177,7 +181,7 @@ public class ConsoleDisplay extends Thread {
                     } else {
                         int countB = 1;
                         for (Book b : books) {
-                           System.out.println(bookController.getInfo(b));
+                            System.out.println(bookController.getInfoBook(b, countB));
                             countB++;
                         }
                     }
@@ -189,7 +193,7 @@ public class ConsoleDisplay extends Thread {
                     if (reqBook == null) {
                         System.out.println("Книги с таким шрифтом не найдена!");
                     }
-                    System.out.println(bookController.getInfo(reqBook));
+                    System.out.println(bookController.getInfoBook(reqBook, 1));
                     break;
                 case "6":
                     flag = true;
@@ -211,20 +215,21 @@ public class ConsoleDisplay extends Thread {
                 System.out.println("Меню: ");
                 System.out.println("1. Список читателей \n" +
                         "2. Добавить книгу \n" +
-                        "3. Удалить книгу \n" +
-                        "4. Снять с обслуживание читателя\n" +
-                        "5. Поиск читателя по номеру билета\n" +
-                        "6. Поиск читателя по ФИО\n" +
-                        "7. Выход.");
+                        "3. Изминить книгу\n" +
+                        "4. Удалить книгу \n" +
+                        "5. Снять с обслуживание читателя\n" +
+                        "6. Поиск читателя по номеру билета\n" +
+                        "7. Поиск читателя по ФИО\n" +
+                        "8. Выход.");
 
                 String code = reader.readLine();
                 switch (code) {
                     case "1":
                         System.out.println("Список читателей :");
-                        User[] arrUsers = userController.getAllUsers();
+                        User[] arrUsers = userController.getSortAllUsers();
                         int count = 1;
                         for (User u : arrUsers) {
-                          System.out.println(userController.getInfoShort(u,count));
+                            System.out.println(userController.getInfoShort(u, count));
                             count++;
                         }
                         break;
@@ -233,6 +238,8 @@ public class ConsoleDisplay extends Thread {
                         System.out.println("Введите номер темы от 1  до 999:");
 
                         int topicNumber = Integer.parseInt(reader.readLine());
+
+                        int serialNumber = bookController.getSerialNumber(topicNumber);
 
                         System.out.println("Введите автора:");
                         String author = reader.readLine();
@@ -254,49 +261,60 @@ public class ConsoleDisplay extends Thread {
 
                         Book book = null;
                         try {
-                            book = new Book(topicNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
+                            book = new Book(topicNumber,serialNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
                         } catch (BookTopicNumberException e) {
                             System.out.println("Ошибка Ввода Номера темы");
                         }
                         bookController.registrationBook(book);
                         System.out.println("Книга зарегистрирована!");
+
+                        Book[] allBook = bookController.getAllBooks();
+                        int countBa = 1;
+                        for (Book b : allBook) {
+                            if (b.getAvailableCopies() > 0) {
+                                System.out.println(bookController.getInfoBook(b, countBa));
+                                countBa++;
+                            }
+                        }
                         break;
                     case "3":
+                        break;
+                    case "4":
                         System.out.println("Удалить книгу");
                         System.out.println("Напишите шифр книги:");
                         String cipher = reader.readLine();
-                        bookController.remove(cipher);
+                        bookController.removeBook(cipher);
                         System.out.println("Книга удалина!");
                         break;
-                    case "4":
+                    case "5":
                         System.out.println("Снять с обслуживание читателя");
                         System.out.println("Напишите номер билета:");
                         String tNumberForRemove = reader.readLine();
-                        userController.remove(tNumberForRemove);
+                        userController.removeUser(tNumberForRemove);
                         break;
 
-                    case "5":
+                    case "6":
                         System.out.println("Поиск читателя по номеру билета");
                         System.out.println("Напишите номер билета: ");
                         String tNumberForFind = reader.readLine();
                         User user = userController.find(tNumberForFind);
                         if (user != null) {
-                            userController.getInfo(user, dataController, bookController);
+                           System.out.println(userController.getInfo(user, dataController, bookController));
                         } else {
                             System.out.println("Пользователь на найден!");
                         }
                         break;
-                    case "6":
+                    case "7":
                         System.out.println("Поиск читателя по ФИО");
                         System.out.println("Введите ФИО читателя: ");
                         String name = reader.readLine();
                         User[] arrUser = userController.getListFindFullName(name);
                         for (int i = 0; i < arrUser.length; i++) {
-                           userController.getInfo(arrUser[i],dataController,bookController);
+                            userController.getInfo(arrUser[i], dataController, bookController);
                         }
                         System.out.println("Поиск завершен!");
                         break;
-                    case "7":
+                    case "8":
                         flag = true;
                         break;
                     default: {
@@ -320,9 +338,10 @@ public class ConsoleDisplay extends Thread {
 
     }
 
-    private void close() {
-        userController.closeWR();
-        dataController.closeWR();
-        bookController.closeWR();
+    private void close() throws IOException {
+
+        userController.loadUser();
+        bookController.loadBook();
+        dataController.loadData();
     }
 }

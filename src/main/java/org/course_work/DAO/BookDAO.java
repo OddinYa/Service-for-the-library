@@ -9,6 +9,6 @@ public interface BookDAO {
     Book[] getAllBooks();
     void clearBookData();
     Book findBookByCipher(String cipher);
-    Book findBooksByAuthorOrTitle(String searchQuery); // поиск книги по фрагментам ФИО автора(ов) или названия
+    Book[] findBooksByAuthorOrTitle(String searchQuery); // поиск книги по фрагментам ФИО автора(ов) или названия
 }
 

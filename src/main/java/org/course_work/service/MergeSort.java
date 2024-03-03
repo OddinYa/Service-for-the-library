@@ -1,5 +1,6 @@
 package org.course_work.service;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -21,10 +22,10 @@ public class MergeSort<T extends Comparable<? super T>> implements Sort<T> {
 
         return merge(left, right);
     }
-
+    @SuppressWarnings("unchecked")
     private T[] merge(T[] left, T[] right) {
         int totalLength = left.length + right.length;
-        T[] result = (T[]) new Comparable[totalLength];
+        T[] result = (T[]) Array.newInstance(left.getClass().getComponentType(), totalLength);
 
         int leftPointer = 0, rightPointer = 0, resultPointer = 0;
         while (leftPointer < left.length && rightPointer < right.length) {

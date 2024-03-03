@@ -2,6 +2,9 @@ package org.course_work.controller;
 
 import org.course_work.DAO.BookDAOImpl;
 import org.course_work.entity.Book;
+import org.course_work.service.MergeSort;
+
+import java.io.IOException;
 
 public class BookController {
 
@@ -24,6 +27,25 @@ public class BookController {
     }
 
     public void registrationBook(Book book) {
+        bookDAO.addNewBook(book);
+    }
+    public String getInfoBook(Book book, int index){
+        return index + ". Шифр книги :" + book.getCipher() + ",Название :" + book.getTitle() + ",Автор: " + book.getAuthor();
+    }
+    public void removeBook(String cipher){
+        bookDAO.removeBook(cipher);
+    }
 
+    public Book[] findSortListBooks(String authorOrTitle){
+        MergeSort<Book> sortedArr = new MergeSort<>();
+        Book[] temp = bookDAO.findBooksByAuthorOrTitle(authorOrTitle);
+
+        return sortedArr.sort(temp);
+    }
+    public int getSerialNumber(int topicNumber){
+        return bookDAO.getSerialNumber(topicNumber);
+    }
+    public void loadBook() throws IOException {
+        bookDAO.loadBooks();
     }
 }
