@@ -43,7 +43,7 @@ public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfB
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
 
-                if (values.length == 2) {
+                if (values.length == 4) {
                     DataOnTheIssuanceAndAcceptanceOfBooks data = extractDataFromLine(line);
                     if (data != null) {
                         list.add(data);
@@ -60,7 +60,7 @@ public class DataIABFile implements FileWriter<DataOnTheIssuanceAndAcceptanceOfB
     private DataOnTheIssuanceAndAcceptanceOfBooks extractDataFromLine(String line) {
         DataOnTheIssuanceAndAcceptanceOfBooks data = null;
 
-        String libraryCardNumber = extractValue(line, " ='", "'");
+        String libraryCardNumber = extractValue(line, "libraryCardNumber='", "'");
         String cipher = extractValue(line, " cipher='", "'");
         String dateOfIssue = extractValue(line, " dateOfIssue='", "'");
         String returnDate = extractValue(line, " returnDate='", "'");

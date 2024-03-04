@@ -2,6 +2,8 @@ package org.course_work.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -36,12 +38,11 @@ public class PasswordHasher {
 
 
     private String readPasswordFromFile(String filename) {
-        try {
-            BufferedReader br = new BufferedReader(new java.io.FileReader(filename));
+        try (InputStream is = getClass().getResourceAsStream("/" + filename);
+             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
             return br.readLine();
         } catch (IOException e) {
-
-            e.getStackTrace();
+            e.printStackTrace();
         }
         return null;
     }

@@ -61,8 +61,7 @@ public class ConsoleDisplay extends Thread {
                 } else if (code.length() == 8) {
                     if (code.equals("А0001-24")) {
                         adminMenu();
-                        close();
-                        System.exit(0);
+
                     } else {
                         User user = userController.find(code);
 
@@ -100,7 +99,7 @@ public class ConsoleDisplay extends Thread {
                     }
                 }
             } catch (Exception e) {
-             System.out.println(e);
+                System.out.println(e);
                 System.out.println("Ошибка ввода!");
             }
 
@@ -116,7 +115,8 @@ public class ConsoleDisplay extends Thread {
                     "3. Список книг на руках \n" +
                     "4. Найти книгу по автору или названию\n" +
                     "5. Найти книгу по коду\n" +
-                    "6. Выход.");
+                    "6. Взять книгу по коду\n" +
+                    "7. Выход.");
 
             String code = reader.readLine();
 
@@ -124,22 +124,26 @@ public class ConsoleDisplay extends Thread {
                 case "1":
                     System.out.println("Введите шифр книги:");
                     String cipher = reader.readLine();
+                    Book book = null;
+                    try {
+                        book = bookController.getBook(cipher);
 
-                    Book book = bookController.getBook(cipher);
-
-                    if (book == null) {
-                        System.out.println("Книга не найдена!");
-                    } else {
-                        DataOnTheIssuanceAndAcceptanceOfBooks data = dataController.
-                                getData(user.getNumberOfTheTicket(), book.getCipher());
-                        if (data != null) {
-                            data.setReturnDate();
-                            book.setAvailableCopies(book.getAvailableCopies()+1);
-
-                            System.out.println("Книга возвращена.Спасибо!");
+                        if (book == null) {
+                            System.out.println("Книга не найдена!");
                         } else {
-                            System.out.println("Данных по этой книги нет!");
+                            DataOnTheIssuanceAndAcceptanceOfBooks data = dataController.
+                                    getData(user.getNumberOfTheTicket(), book.getCipher());
+                            if (data != null) {
+                                data.setReturnDate();
+                                book.setAvailableCopies(book.getAvailableCopies() + 1);
+
+                                System.out.println("Книга возвращена.Спасибо!");
+                            } else {
+                                System.out.println("Данных по этой книги нет!");
+                            }
                         }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Не стандартный шифр, либо ошибка шифра!");
                     }
                     break;
                 case "2":
@@ -159,11 +163,11 @@ public class ConsoleDisplay extends Thread {
                     } else {
                         Book bookToGet = bookController.getBook(codeOfBook);
 
-                        bookToGet.setAvailableCopies(bookToGet.getAvailableCopies()-1);
-
                         if (bookToGet == null) {
-                            System.out.println("Ошибка шифра книги!");
-                        }
+                            System.out.println("Ошибка шифра книги или книг с таким шрифтом в наличии нет!");
+
+                        }else  bookToGet.setAvailableCopies(bookToGet.getAvailableCopies() - 1);
+
                         dataController.registrationData(user.getNumberOfTheTicket(), bookToGet.getCipher());
 
                     }
@@ -173,7 +177,7 @@ public class ConsoleDisplay extends Thread {
                     System.out.println(userController.getInfo(user, dataController, bookController));
                     break;
                 case "4":
-                    System.out.println("Ввидите имя автора: ");
+                    System.out.println("Введите имя автора или название: ");
                     String author = reader.readLine();
                     Book[] books = bookController.findSortListBooks(author);
                     if (books.length == 0) {
@@ -187,7 +191,7 @@ public class ConsoleDisplay extends Thread {
                     }
                     break;
                 case "5":
-                    System.out.println("Ввидите шифр книг: ");
+                    System.out.println("Введите шифр книг: ");
                     String codeBook = reader.readLine();
                     Book reqBook = bookController.getBook(codeBook);
                     if (reqBook == null) {
@@ -196,6 +200,20 @@ public class ConsoleDisplay extends Thread {
                     System.out.println(bookController.getInfoBook(reqBook, 1));
                     break;
                 case "6":
+                    System.out.println("Введите шифр книг: ");
+                    String getBook = reader.readLine();
+                    Book bookToGet = bookController.getBook(getBook);
+
+                    if (bookToGet == null) {
+                        System.out.println("Ошибка шифра книги или книг с таким шрифтом в наличии нет!");
+
+                    } else {
+                        bookToGet.setAvailableCopies(bookToGet.getAvailableCopies() - 1);
+                        System.out.println("Списибо вы взяли книгу " + bookToGet.getTitle());
+                        dataController.registrationData(user.getNumberOfTheTicket(), bookToGet.getCipher());
+                    }
+                    break;
+                case "7":
                     flag = true;
                     break;
                 default: {
@@ -236,7 +254,8 @@ public class ConsoleDisplay extends Thread {
                     case "2":
                         System.out.println("Добавить книгу");
                         System.out.println("Введите номер темы от 1  до 999:");
-
+                        Book book = null;
+                        try {
                         int topicNumber = Integer.parseInt(reader.readLine());
 
                         int serialNumber = bookController.getSerialNumber(topicNumber);
@@ -252,18 +271,16 @@ public class ConsoleDisplay extends Thread {
 
                         System.out.println("Введите год публикации:");
                         int yearOfPublication = Integer.parseInt(reader.readLine());
-
+                        //TODO проверки!
                         System.out.println("Введите общее количество копий:");
                         int totalCopies = Integer.parseInt(reader.readLine());
 
                         System.out.println("Введите доступное количество копий:");
                         int availableCopies = Integer.parseInt(reader.readLine());
 
-                        Book book = null;
-                        try {
-                            book = new Book(topicNumber,serialNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
-                        } catch (BookTopicNumberException e) {
-                            System.out.println("Ошибка Ввода Номера темы");
+                            book = new Book(topicNumber, serialNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
+                        } catch (BookTopicNumberException | NumberFormatException e) {
+                            System.out.println("Ошибка Ввода Номера темы!");
                         }
                         bookController.registrationBook(book);
                         System.out.println("Книга зарегистрирована!");
@@ -299,7 +316,7 @@ public class ConsoleDisplay extends Thread {
                         String tNumberForFind = reader.readLine();
                         User user = userController.find(tNumberForFind);
                         if (user != null) {
-                           System.out.println(userController.getInfo(user, dataController, bookController));
+                            System.out.println(userController.getInfo(user, dataController, bookController));
                         } else {
                             System.out.println("Пользователь на найден!");
                         }
@@ -325,6 +342,7 @@ public class ConsoleDisplay extends Thread {
 
         } else {
             System.out.println("ОШИБКА ПАРОЛЯ!");
+
         }
 
 

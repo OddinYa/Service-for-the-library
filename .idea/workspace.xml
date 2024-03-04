@@ -7,15 +7,11 @@
     <list default="true" id="3ef48089-6a48-4ed7-82ea-36acfefbaee0" name="Changes" comment="+dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/BookDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/DataDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/DAO/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/DataController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/entity/DataOnTheIssuanceAndAcceptanceOfBooks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/DataIABFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/UserFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/UserFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/service/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/service/PasswordHasher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,6 +93,9 @@
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Мой диск\Общая учебная папка\IV семестр\AиСДКурсовой\ServiceForTheLibrary\src\main\resources" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="org.course_work.entity" />
@@ -259,6 +258,9 @@
       <workItem from="1709403507909" duration="8410000" />
       <workItem from="1709458575785" duration="6854000" />
       <workItem from="1709474919559" duration="869000" />
+      <workItem from="1709495760340" duration="1048000" />
+      <workItem from="1709568404316" duration="4054000" />
+      <workItem from="1709572499989" duration="1635000" />
     </task>
     <task id="LOCAL-00001" summary="firstCommit">
       <created>1707760432133</created>
@@ -393,7 +395,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709462868511</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="+dev">
+      <created>1709495830209</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709495830209</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +463,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/course_work/view/console/ConsoleDisplay.java</url>
-          <line>342</line>
+          <line>360</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -463,9 +472,9 @@
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/service/BookFile.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="45" />
+          <url>file://$PROJECT_DIR$/src/main/java/org/course_work/controller/BookController.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

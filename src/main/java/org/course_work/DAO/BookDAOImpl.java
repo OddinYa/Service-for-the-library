@@ -57,6 +57,9 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public Book findBookByCipher(String cipher) {
+        if(cipher.length()<6){
+            return null;
+        }
        Book result = tree.get(cipher);
        return result;
     }

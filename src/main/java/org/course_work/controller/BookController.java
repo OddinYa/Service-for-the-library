@@ -15,7 +15,13 @@ public class BookController {
     }
 
     public Book getBook(String cipher) {
-        return bookDAO.findBookByCipher(cipher);
+        Book book = bookDAO.findBookByCipher(cipher);
+
+        if(book.getAvailableCopies()==0){
+            return null;
+        }
+
+        return book;
     }
 
     public Book[] getAllBooks() {
@@ -39,8 +45,23 @@ public class BookController {
     public Book[] findSortListBooks(String authorOrTitle){
         MergeSort<Book> sortedArr = new MergeSort<>();
         Book[] temp = bookDAO.findBooksByAuthorOrTitle(authorOrTitle);
+        int count = 0;
+        for (Book b: temp) {
+            if(b!=null){
+                count++;
+            }
+        }
 
-        return sortedArr.sort(temp);
+        Book[] result = new Book[count];
+        count = 0;
+        for (Book b: temp) {
+            if(b!=null){
+               result[count] = b;
+               count++;
+            }
+        }
+
+        return sortedArr.sort(result);
     }
     public int getSerialNumber(int topicNumber){
         return bookDAO.getSerialNumber(topicNumber);

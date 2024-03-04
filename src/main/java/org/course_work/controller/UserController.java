@@ -46,7 +46,7 @@ public class UserController {
         DataOnTheIssuanceAndAcceptanceOfBooks[] findData = data.getList(user.getNumberOfTheTicket());
         int count = 1;
         for (DataOnTheIssuanceAndAcceptanceOfBooks d : findData) {
-            if (d.getReturnDate() == null) {
+            if (d.isFlagActive()) {
                 Book book = bookController.getBook(d.getCipher());
                 stringBuilder.append(count + ". Шифр: " + book.getCipher() + ",Название: " + book.getTitle() + ",Автор: " + book.getAuthor()+"\n");
                 count++;
