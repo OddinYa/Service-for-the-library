@@ -1,0 +1,1 @@
+DataOnTheIssuanceAndAcceptanceOfBooks{libraryCardNumber='Ч0003-24', cipher='015.002', dateOfIssue='04-03-2024', returnDate='null'}

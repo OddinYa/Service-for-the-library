@@ -17,6 +17,9 @@ public class BookController {
     public Book getBook(String cipher) {
         Book book = bookDAO.findBookByCipher(cipher);
 
+        if(book==null){
+            return null;
+        }
         if(book.getAvailableCopies()==0){
             return null;
         }

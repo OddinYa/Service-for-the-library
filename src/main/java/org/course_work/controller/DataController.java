@@ -1,7 +1,6 @@
 package org.course_work.controller;
 
 import org.course_work.DAO.DataDAOImpl;
-import org.course_work.entity.Book;
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
 
 import java.io.IOException;
@@ -23,9 +22,12 @@ public class DataController {
    public void registrationData(String ticket, String cipher){
         dataDAO.add(ticket,cipher);
    }
-   public void removeData(String cipher){
+   public void removeDataCipher(String cipher){
         dataDAO.removeCipher(cipher);
     }
+   public void removeDataTicket(String ticket){
+        dataDAO.removeTicket(ticket);
+   }
 
    public void closeWR(){
         dataDAO.close();

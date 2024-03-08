@@ -1,7 +1,6 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
-import org.course_work.entity.User;
 import org.course_work.service.DataIABFile;
 import org.course_work.struct.linkedList.List;
 
@@ -9,8 +8,8 @@ import java.io.IOException;
 
 public class DataDAOImpl implements DataDAO {
 
-    private List list;
-    private DataIABFile data;
+    private final List list;
+    private final DataIABFile data;
     public DataDAOImpl(){
         data = new DataIABFile();
         list = data.readerFile();
@@ -35,12 +34,12 @@ public class DataDAOImpl implements DataDAO {
 
     @Override
     public void removeCipher(String cipher) {
-
+        list.removeCipher(cipher);
     }
 
     @Override
     public void removeTicket(String ticket) {
-
+        list.removeTicket(ticket);
     }
 
     public DataOnTheIssuanceAndAcceptanceOfBooks[] getDataArr(String tNumb){

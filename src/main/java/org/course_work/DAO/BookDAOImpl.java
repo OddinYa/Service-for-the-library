@@ -1,22 +1,18 @@
 package org.course_work.DAO;
 
 import org.course_work.entity.Book;
-import org.course_work.entity.DataOnTheIssuanceAndAcceptanceOfBooks;
-import org.course_work.exception.BookTopicNumberException;
 import org.course_work.service.BMSearch;
 import org.course_work.service.BookFile;
 import org.course_work.service.MergeSort;
 import org.course_work.struct.tree.Tree;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
 
 public class BookDAOImpl implements BookDAO {
-    private Tree tree;
+    private final Tree tree;
 
     private MergeSort<Book> bookMergeSort;
-    private BookFile fileBook;
+    private final BookFile fileBook;
 
     public BookDAOImpl() {
 
@@ -37,7 +33,11 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public void removeBook(String cipher) {
-        // tree.delete(findBookByCipher(cipher));
+        if(cipher.length()==7){
+            tree.remove(cipher);
+        }else System.out.println("Не корекный шифр книги!");
+
+
     }
 
     @Override

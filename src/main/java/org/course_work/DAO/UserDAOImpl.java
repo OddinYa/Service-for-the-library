@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class UserDAOImpl implements UserDAO{
     private MyMap map;
-    private UserFile userFile;
+    private final UserFile userFile;
 
 
     public UserDAOImpl(){
@@ -55,7 +55,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void remove(String ticket) {
-
+        map.remove(ticket);
     }
 
     public void loadUser() throws IOException {
