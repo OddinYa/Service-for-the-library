@@ -44,10 +44,11 @@ public class ConsoleDisplay extends Thread {
 
     private void mainMenu() throws IOException, AccessRightsException {
         boolean flag = false;
+        boolean exitAdminM = false;
 
         while (!flag) {
             try {
-
+                exitAdminM = false;
 
                 System.out.println("Введите EXIT для выхода из меню!");
                 System.out.println("Введите номер билета или \"0\" если еще не получили билет:  ");
@@ -61,8 +62,8 @@ public class ConsoleDisplay extends Thread {
                 } else if (code.length() == 8) {
                     if (code.equals("А0001-24")) {
                         adminMenu();
-                        close();
-                        System.exit(0);
+                        exitAdminM = true;
+
                     } else {
                         User user = userController.find(code);
 
@@ -74,7 +75,9 @@ public class ConsoleDisplay extends Thread {
                             System.exit(0);
                         }
                     }
-                    System.out.println("Пользователь не найден или ошибка ввода!");
+                    if (!exitAdminM) {
+                        System.out.println("Пользователь не найден или ошибка ввода!");
+                    }
                 } else {
                     if (code.equals("0")) {
                         System.out.println("Введите букву Абонимента:");
@@ -100,7 +103,7 @@ public class ConsoleDisplay extends Thread {
                     }
                 }
             } catch (Exception e) {
-             System.out.println(e);
+                System.out.println(e);
                 System.out.println("Ошибка ввода!");
             }
 
@@ -116,7 +119,8 @@ public class ConsoleDisplay extends Thread {
                     "3. Список книг на руках \n" +
                     "4. Найти книгу по автору или названию\n" +
                     "5. Найти книгу по коду\n" +
-                    "6. Выход.");
+                    "6. Взять книгу по коду\n" +
+                    "7. Выход.");
 
             String code = reader.readLine();
 
@@ -124,22 +128,26 @@ public class ConsoleDisplay extends Thread {
                 case "1":
                     System.out.println("Введите шифр книги:");
                     String cipher = reader.readLine();
+                    Book book = null;
+                    try {
+                        book = bookController.getBook(cipher);
 
-                    Book book = bookController.getBook(cipher);
-
-                    if (book == null) {
-                        System.out.println("Книга не найдена!");
-                    } else {
-                        DataOnTheIssuanceAndAcceptanceOfBooks data = dataController.
-                                getData(user.getNumberOfTheTicket(), book.getCipher());
-                        if (data != null) {
-                            data.setReturnDate();
-                            book.setAvailableCopies(book.getAvailableCopies()+1);
-
-                            System.out.println("Книга возвращена.Спасибо!");
+                        if (book == null) {
+                            System.out.println("Книга не найдена!");
                         } else {
-                            System.out.println("Данных по этой книги нет!");
+                            DataOnTheIssuanceAndAcceptanceOfBooks data = dataController.
+                                    getData(user.getNumberOfTheTicket(), book.getCipher());
+                            if (data != null) {
+                                data.setReturnDate();
+                                book.setAvailableCopies(book.getAvailableCopies() + 1);
+
+                                System.out.println("Книга возвращена.Спасибо!");
+                            } else {
+                                System.out.println("Данных по этой книги нет!");
+                            }
                         }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Не стандартный шифр, либо ошибка шифра!");
                     }
                     break;
                 case "2":
@@ -159,11 +167,11 @@ public class ConsoleDisplay extends Thread {
                     } else {
                         Book bookToGet = bookController.getBook(codeOfBook);
 
-                        bookToGet.setAvailableCopies(bookToGet.getAvailableCopies()-1);
-
                         if (bookToGet == null) {
-                            System.out.println("Ошибка шифра книги!");
-                        }
+                            System.out.println("Ошибка шифра книги или книг с таким шрифтом в наличии нет!");
+
+                        } else bookToGet.setAvailableCopies(bookToGet.getAvailableCopies() - 1);
+
                         dataController.registrationData(user.getNumberOfTheTicket(), bookToGet.getCipher());
 
                     }
@@ -173,7 +181,7 @@ public class ConsoleDisplay extends Thread {
                     System.out.println(userController.getInfo(user, dataController, bookController));
                     break;
                 case "4":
-                    System.out.println("Ввидите имя автора: ");
+                    System.out.println("Введите имя автора или название: ");
                     String author = reader.readLine();
                     Book[] books = bookController.findSortListBooks(author);
                     if (books.length == 0) {
@@ -187,7 +195,7 @@ public class ConsoleDisplay extends Thread {
                     }
                     break;
                 case "5":
-                    System.out.println("Ввидите шифр книг: ");
+                    System.out.println("Введите шифр книг: ");
                     String codeBook = reader.readLine();
                     Book reqBook = bookController.getBook(codeBook);
                     if (reqBook == null) {
@@ -196,6 +204,20 @@ public class ConsoleDisplay extends Thread {
                     System.out.println(bookController.getInfoBook(reqBook, 1));
                     break;
                 case "6":
+                    System.out.println("Введите шифр книг: ");
+                    String getBook = reader.readLine();
+                    Book bookToGet = bookController.getBook(getBook);
+
+                    if (bookToGet == null) {
+                        System.out.println("Ошибка шифра книги или книг с таким шрифтом в наличии нет!");
+
+                    } else {
+                        bookToGet.setAvailableCopies(bookToGet.getAvailableCopies() - 1);
+                        System.out.println("Списибо вы взяли книгу " + bookToGet.getTitle());
+                        dataController.registrationData(user.getNumberOfTheTicket(), bookToGet.getCipher());
+                    }
+                    break;
+                case "7":
                     flag = true;
                     break;
                 default: {
@@ -215,7 +237,7 @@ public class ConsoleDisplay extends Thread {
                 System.out.println("Меню: ");
                 System.out.println("1. Список читателей \n" +
                         "2. Добавить книгу \n" +
-                        "3. Изминить книгу\n" +
+                        "3. Изменить книгу\n" +
                         "4. Удалить книгу \n" +
                         "5. Снять с обслуживание читателя\n" +
                         "6. Поиск читателя по номеру билета\n" +
@@ -236,34 +258,45 @@ public class ConsoleDisplay extends Thread {
                     case "2":
                         System.out.println("Добавить книгу");
                         System.out.println("Введите номер темы от 1  до 999:");
-
-                        int topicNumber = Integer.parseInt(reader.readLine());
-
-                        int serialNumber = bookController.getSerialNumber(topicNumber);
-
-                        System.out.println("Введите автора:");
-                        String author = reader.readLine();
-
-                        System.out.println("Введите название:");
-                        String title = reader.readLine();
-
-                        System.out.println("Введите издателя:");
-                        String publisher = reader.readLine();
-
-                        System.out.println("Введите год публикации:");
-                        int yearOfPublication = Integer.parseInt(reader.readLine());
-
-                        System.out.println("Введите общее количество копий:");
-                        int totalCopies = Integer.parseInt(reader.readLine());
-
-                        System.out.println("Введите доступное количество копий:");
-                        int availableCopies = Integer.parseInt(reader.readLine());
-
                         Book book = null;
                         try {
-                            book = new Book(topicNumber,serialNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
-                        } catch (BookTopicNumberException e) {
-                            System.out.println("Ошибка Ввода Номера темы");
+                            int topicNumber = Integer.parseInt(reader.readLine());
+
+                            if (topicNumber > 0 && topicNumber < 999) {
+                                throw new IllegalArgumentException("Номер темы не подходит!");
+                            }
+                            int serialNumber = bookController.getSerialNumber(topicNumber);
+
+                            System.out.println("Введите автора:");
+                            String author = reader.readLine();
+
+                            System.out.println("Введите название:");
+                            String title = reader.readLine();
+
+                            System.out.println("Введите издателя:");
+                            String publisher = reader.readLine();
+
+                            System.out.println("Введите год публикации:");
+                            int yearOfPublication = Integer.parseInt(reader.readLine());
+
+                            System.out.println("Введите общее количество копий:");
+                            int totalCopies = Integer.parseInt(reader.readLine());
+
+                            if (totalCopies < 0) {
+                                throw new IllegalArgumentException("Отрицательное значение недопустимо для общего количества копий");
+                            }
+                            System.out.println("Введите доступное количество копий:");
+                            int availableCopies = Integer.parseInt(reader.readLine());
+
+                            if (availableCopies > totalCopies && availableCopies > 0) {
+                                throw new IllegalArgumentException("Отрицательное значение недопустимо для доступного количества копий");
+                            }
+
+                            book = new Book(topicNumber, serialNumber, author, title, publisher, yearOfPublication, totalCopies, availableCopies);
+                        } catch (BookTopicNumberException | NumberFormatException e) {
+                            System.out.println("Ошибка ввода информации!");
+                        } catch (IllegalArgumentException t) {
+                            System.out.println(t.getMessage());
                         }
                         bookController.registrationBook(book);
                         System.out.println("Книга зарегистрирована!");
@@ -278,28 +311,112 @@ public class ConsoleDisplay extends Thread {
                         }
                         break;
                     case "3":
+                        System.out.println("Изменить книгу");
+                        System.out.println("Напишите шифр книги:");
+                        String editCipher = reader.readLine();
+                        Book bookEdit = bookController.getBook(editCipher);
+                        if (bookEdit != null) {
+                            boolean flagExit = true;
+                            while (flagExit) {
+                                System.out.println("Меню: ");
+                                System.out.println("1. Изменить тему \n" +
+                                        "2. Изменить автора \n" +
+                                        "3. Изменить название\n" +
+                                        "4. Изменить издателя \n" +
+                                        "5. Изменить год публикации\n" +
+                                        "6. Изменить общее количество копий\n" +
+                                        "7. Изменить доступное количество копий\n" +
+                                        "8. Выход.");
+                                String editNumb = reader.readLine();
+                                try {
+                                    switch (editNumb) {
+                                        case "1":
+                                            System.out.println("Введите номер темы от 1  до 999:");
+                                            int topicNumber = Integer.parseInt(reader.readLine());
+
+                                            if (topicNumber < 0 && topicNumber > 999) {
+                                                throw new IllegalArgumentException("Номер темы не подходит!");
+                                            } else {
+                                                bookEdit.setCipher(topicNumber);
+                                            }
+                                            break;
+                                        case "2":
+                                            System.out.println("Введите автора:");
+                                            String newAuthor = reader.readLine();
+                                            bookEdit.setAuthor(newAuthor);
+                                            break;
+                                        case "3":
+                                            System.out.println("Введите название:");
+                                            String newTitle = reader.readLine();
+                                            bookEdit.setTitle(newTitle);
+                                            break;
+                                        case "4":
+                                            System.out.println("Введите издателя:");
+                                            String newPublisher = reader.readLine();
+                                            bookEdit.setPublisher(newPublisher);
+                                            break;
+                                        case "5":
+                                            System.out.println("Введите год публикации:");
+                                            int newYearOfPublication = Integer.parseInt(reader.readLine());
+                                            bookEdit.setYearOfPublication(newYearOfPublication);
+                                            break;
+                                        case "6":
+                                            System.out.println("Введите общее количество копий:");
+                                            int newTotalCopies = Integer.parseInt(reader.readLine());
+
+                                            if (newTotalCopies < 0) {
+                                                throw new IllegalArgumentException("Отрицательное значение недопустимо для общего количества копий");
+                                            }
+                                            break;
+                                        case "7":
+                                            System.out.println("Введите доступное количество копий:");
+                                            int newAvailableCopies = Integer.parseInt(reader.readLine());
+
+                                            if (newAvailableCopies > bookEdit.getTotalCopies()) {
+                                                throw new IllegalArgumentException("Отрицательное значение недопустимо для доступного количества копий");
+                                            }
+                                            break;
+                                        case "8":
+                                            flagExit = false;
+                                            break;
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                        } else {
+                            System.out.println("Книги с таким шифром не найдено!");
+                        }
                         break;
                     case "4":
                         System.out.println("Удалить книгу");
                         System.out.println("Напишите шифр книги:");
                         String cipher = reader.readLine();
-                        bookController.removeBook(cipher);
-                        System.out.println("Книга удалина!");
+                        Book bookDel = bookController.getBook(cipher);
+                        if (bookDel == null) {
+                            System.out.println("Книга не найдена!");
+                        } else {
+                            bookController.removeBook(cipher);
+                            System.out.println("Книга удалина!");
+                        }
                         break;
                     case "5":
                         System.out.println("Снять с обслуживание читателя");
                         System.out.println("Напишите номер билета:");
                         String tNumberForRemove = reader.readLine();
-                        userController.removeUser(tNumberForRemove);
+                        if (tNumberForRemove.equals("А0001-24")) {
+                            throw new IllegalArgumentException("Админа нельзя удалить!");
+                        } else {
+                            userController.removeUser(tNumberForRemove, dataController);
+                        }
                         break;
-
                     case "6":
                         System.out.println("Поиск читателя по номеру билета");
                         System.out.println("Напишите номер билета: ");
                         String tNumberForFind = reader.readLine();
                         User user = userController.find(tNumberForFind);
                         if (user != null) {
-                           System.out.println(userController.getInfo(user, dataController, bookController));
+                            System.out.println(userController.getInfo(user, dataController, bookController));
                         } else {
                             System.out.println("Пользователь на найден!");
                         }

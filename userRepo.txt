@@ -1,0 +1,4 @@
+User{numberOfTheTicket='А0001-24', accessRights=А, numbOfRegistration=1, fullName='Жирнов С.В.', yearOfBirth=31, address='ул.Ленина', placeOfWorkOrStudy='КТбс'}
+User{numberOfTheTicket='Ч0003-24', accessRights=Ч, numbOfRegistration=3, fullName='Житников А.Ю.', yearOfBirth=32, address='ул.Кабзона', placeOfWorkOrStudy='Не работую и не учусь'}
+User{numberOfTheTicket='Ч0002-23', accessRights=Ч, numbOfRegistration=2, fullName='Петрова О.С.', yearOfBirth=35, address='ул. Пушкина', placeOfWorkOrStudy='Работаю в медицинском центре'}
+User{numberOfTheTicket='А0004-24', accessRights=А, numbOfRegistration=4, fullName='Сидоров И.П.', yearOfBirth=18, address='ул. Ломоносова', placeOfWorkOrStudy='Учусь в университете'}

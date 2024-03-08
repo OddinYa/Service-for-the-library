@@ -1,28 +1,26 @@
 package org.course_work.entity;
 
-import org.course_work.controller.BookController;
 import org.course_work.exception.BookTopicNumberException;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Book implements Entity, Comparable<org.course_work.entity.Book> {
-        private String cipher;
-        private int topicNumber;
+    private String cipher;
+    private int topicNumber;
 
-        private static int lastAssignedNumber = 0;
-        private int serialNumber;
+    private static final int lastAssignedNumber = 0;
+    private int serialNumber;
 
-        private String author;
+    private String author;
 
-        private String title;
-        private String publisher;
-        private int yearOfPublication;
-        private int totalCopies;
-        private int availableCopies;
+    private String title;
+    private String publisher;
+    private int yearOfPublication;
+    private int totalCopies;
+    private int availableCopies;
 
-//    public Book(int topicNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
+    //    public Book(int topicNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
 //
 //
 //        if (checkTopicNumbed(topicNumber)) {
@@ -42,7 +40,7 @@ public class Book implements Entity, Comparable<org.course_work.entity.Book> {
 //
 //
 //    }
-    public Book(int topicNumber,int serialNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
+    public Book(int topicNumber, int serialNumber, String author, String title, String publisher, int yearOfPublication, int totalCopies, int availableCopies) throws BookTopicNumberException {
 
 
         if (checkTopicNumbed(topicNumber)) {
@@ -63,6 +61,11 @@ public class Book implements Entity, Comparable<org.course_work.entity.Book> {
 
     }
 
+    public void setCipher(int topicNumber) throws BookTopicNumberException {
+        this.topicNumber = topicNumber;
+        setCipher(createCipher(this.serialNumber));
+    }
+
     private String createCipher(int serialNumber) throws BookTopicNumberException {
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -74,6 +77,9 @@ public class Book implements Entity, Comparable<org.course_work.entity.Book> {
         stringBuilder.append(serial);
 
         return stringBuilder.toString();
+    }
+    private void setCipher(String cipher){
+        this.cipher = cipher;
     }
 
     private boolean checkTopicNumbed(int topicNumber) {
@@ -185,6 +191,7 @@ public class Book implements Entity, Comparable<org.course_work.entity.Book> {
     public void getCart(int numb) {
 
     }
+
     @Override
     public int compareTo(@NotNull Book o) {
         if (this == o) {

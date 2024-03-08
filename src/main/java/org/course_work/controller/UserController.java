@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class UserController {
 
-    private UserDAOImpl userDAO;
+    private final UserDAOImpl userDAO;
 
     public UserController() {
         userDAO = new UserDAOImpl();
@@ -46,7 +46,7 @@ public class UserController {
         DataOnTheIssuanceAndAcceptanceOfBooks[] findData = data.getList(user.getNumberOfTheTicket());
         int count = 1;
         for (DataOnTheIssuanceAndAcceptanceOfBooks d : findData) {
-            if (d.getReturnDate() == null) {
+            if (d.isFlagActive()) {
                 Book book = bookController.getBook(d.getCipher());
                 stringBuilder.append(count + ". Шифр: " + book.getCipher() + ",Название: " + book.getTitle() + ",Автор: " + book.getAuthor()+"\n");
                 count++;
@@ -58,21 +58,15 @@ public class UserController {
     }
     public String getInfoShort(User user,int index) {
 
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(index +". Номер билета: " + user.getNumberOfTheTicket() + ",ФИО "+ user.getFullName());
-
-        return stringBuilder.toString();
+        return index + ". Номер билета: " + user.getNumberOfTheTicket() + ",ФИО " + user.getFullName();
     }
     public String getInfoShort(User user) {
-        StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("Номер билета: " + user.getNumberOfTheTicket() + ",ФИО "+ user.getFullName());
-
-        return stringBuilder.toString();
+        return "Номер билета: " + user.getNumberOfTheTicket() + ",ФИО " + user.getFullName();
     }
 
-    public void removeUser(String ticket){
+    public void removeUser(String ticket,DataController dataController){
+        dataController.removeDataTicket(ticket);
         userDAO.remove(ticket);
     }
 
@@ -80,7 +74,7 @@ public class UserController {
         MergeSort<User> userSorted = new MergeSort<>();
 
         User[] users = userDAO.getAllUsers().toArray();
-        User[] result =(User[])userSorted.sort(users);  // TODO Ошибка
+        User[] result = userSorted.sort(users);
 
         return result;
     }

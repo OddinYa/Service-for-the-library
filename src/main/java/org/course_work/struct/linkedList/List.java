@@ -108,8 +108,29 @@ public class List extends MyStruct {
             cur = cur.next;
         }
         return null;
+    }
 
-
+    public void removeCipher(String cipher) {
+        Node temp = head;
+        while (temp != null) {
+            if (temp.data.getCipher().equals(cipher)) {
+                this.remove(temp.data);
+                temp = temp.next;
+            } else {
+                temp = temp.next;
+            }
+        }
+    }
+    public void removeTicket(String ticket){
+        Node temp = head;
+        while (temp != null) {
+            if (temp.data.getLibraryCardNumber().equals(ticket)) {
+                this.remove(temp.data);
+                temp = temp.next;
+            } else {
+                temp = temp.next;
+            }
+        }
     }
 
     public List getDataWithCardNumber(String card) {
@@ -130,11 +151,11 @@ public class List extends MyStruct {
         return listResult;
     }
 
-    public int length(){
+    public int length() {
         Node temp = head;
         int result = 0;
 
-        while (temp!=null){
+        while (temp != null) {
             result++;
             temp = temp.next;
         }
@@ -142,7 +163,7 @@ public class List extends MyStruct {
         return result;
     }
 
-    public DataOnTheIssuanceAndAcceptanceOfBooks[] listToArray(){
+    public DataOnTheIssuanceAndAcceptanceOfBooks[] listToArray() {
 
         this.sort();
 

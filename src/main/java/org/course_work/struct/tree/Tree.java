@@ -27,6 +27,10 @@ public class Tree extends MyStruct {
         String key = book.getCipher();
         root = insert(root, key, book);
     }
+    public void remove(String key) {
+        int hash = hash(key);
+        root = delete(root, hash);
+    }
 
     public Book get(String key) {
 
@@ -45,7 +49,7 @@ public class Tree extends MyStruct {
                 temp = temp.right;
             }
         }
-        System.out.println("Книга с таким шифром не найдена!");
+
         return result;
     }
 

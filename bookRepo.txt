@@ -1,0 +1,10 @@
+Book{cipher='011.001', topicNumber=11, serialNumber=1, author='Эмилия Браун', title='Фантастическое Путешествие', publisher='Чудесные Книги', yearOfPublication=2020, totalCopies=8, availableCopies=8}
+Book{cipher='013.001', topicNumber=13, serialNumber=1, author='Уильям Тёрнер', title='Отголоски Вечности', publisher='Издательство Вечности', yearOfPublication=2023, totalCopies=15, availableCopies=15}
+Book{cipher='015.001', topicNumber=15, serialNumber=1, author='Бенджамин Харрис', title='Мифические Чудеса', publisher='Легендарное Издательство', yearOfPublication=2019, totalCopies=11, availableCopies=11}
+Book{cipher='016.001', topicNumber=16, serialNumber=1, author='Габриэль Родригес', title='Хроники Творения', publisher='Вечное Перо', yearOfPublication=2021, totalCopies=8, availableCopies=7}
+Book{cipher='020.001', topicNumber=20, serialNumber=1, author='Михаил Иванов', title='Секретный Сад', publisher='Тайное Издательство', yearOfPublication=2019, totalCopies=12, availableCopies=12}
+Book{cipher='010.002', topicNumber=10, serialNumber=2, author='Оливия Кларк', title='Легенды Потерянного', publisher='Древние Хроники', yearOfPublication=2020, totalCopies=7, availableCopies=7}
+Book{cipher='013.002', topicNumber=13, serialNumber=2, author='Ава Уайт', title='Шепоты ветра', publisher='Загадочные Книги', yearOfPublication=2017, totalCopies=9, availableCopies=9}
+Book{cipher='015.002', topicNumber=15, serialNumber=2, author='Натали Ли', title='Звезды За Пределами Времени', publisher='Космические Публикации', yearOfPublication=2022, totalCopies=13, availableCopies=12}
+Book{cipher='020.002', topicNumber=20, serialNumber=2, author='София Мартинес', title='Вечные Сказки', publisher='Вечные Публикации', yearOfPublication=2021, totalCopies=6, availableCopies=6}
+Book{cipher='333.001', topicNumber=333, serialNumber=1, author='ТЕСТ', title='ТЕСТ', publisher='Лучшие Издатели', yearOfPublication=2022, totalCopies=5, availableCopies=5}

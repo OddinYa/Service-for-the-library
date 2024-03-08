@@ -13,6 +13,10 @@ public class DataOnTheIssuanceAndAcceptanceOfBooks implements Entity {
    private String dateOfIssue;
    private String returnDate;
 
+   public boolean isFlagActive() {
+      return flagActive;
+   }
+
    private boolean flagActive;
 
    public DataOnTheIssuanceAndAcceptanceOfBooks(String libraryCardNumber, String cipher) {
@@ -28,10 +32,11 @@ public class DataOnTheIssuanceAndAcceptanceOfBooks implements Entity {
 
       DataOnTheIssuanceAndAcceptanceOfBooks data = new DataOnTheIssuanceAndAcceptanceOfBooks(libraryCardNumber,cipher);
 
-      if(returnDate.equals("")){
-         data.flagActive = true;
+      if(returnDate.equals("null")){
+
       }else {
          data.returnDate = returnDate;
+         data.flagActive = false;
       }
       data.dateOfIssue = dateOfIssue;
 
