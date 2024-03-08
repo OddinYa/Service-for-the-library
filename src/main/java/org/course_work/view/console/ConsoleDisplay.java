@@ -396,7 +396,7 @@ public class ConsoleDisplay extends Thread {
                         if (bookDel == null) {
                             System.out.println("Книга не найдена!");
                         } else {
-                            bookController.removeBook(cipher);
+                            bookController.removeBook(cipher,dataController);
                             System.out.println("Книга удалина!");
                         }
                         break;

@@ -41,7 +41,8 @@ public class BookController {
     public String getInfoBook(Book book, int index){
         return index + ". Шифр книги :" + book.getCipher() + ",Название :" + book.getTitle() + ",Автор: " + book.getAuthor();
     }
-    public void removeBook(String cipher){
+    public void removeBook(String cipher,DataController dataController){
+        dataController.removeDataCipher(cipher);
         bookDAO.removeBook(cipher);
     }
 
